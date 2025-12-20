@@ -1,4 +1,4 @@
-import { __, sprintf } from "@wordpress/i18n";
+import { __ } from "@wordpress/i18n";
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
 import { PanelBody, RangeControl } from "@wordpress/components";
 import "./editor.scss";
@@ -36,10 +36,9 @@ export default function Edit({ attributes, setAttributes }) {
 					<svg
 						className="ring"
 						viewBox="0 0 120 120"
-						aria-label={sprintf(
-							__("Overall score %s out of %s", "sl-blocks"),
-							rating,
-							maxRating,
+						aria-label={__(
+							`Overall score ${rating} out of ${maxRating}`,
+							"sl-blocks",
 						)}
 					>
 						<circle className="track" cx="60" cy="60" r="46" />
