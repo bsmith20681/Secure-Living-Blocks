@@ -41,7 +41,7 @@ $strokeDashOffset = $circumference * (1 - $scoreRatio);
 
 		<div class="center">
 			<div class="value"><?= esc_html($rating); ?></div>
-			<div class="label"><?php esc_html_e('Overall Score', 'sl-blocks'); ?></div>
+			<div class="label"><?php esc_html_e('Overall Score', 'rating'); ?></div>
 		</div>
 	</div>
 </div>

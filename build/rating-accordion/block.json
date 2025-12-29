@@ -1,23 +1,28 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "create-block/sl-blocks",
+  "name": "create-block/rating-accordion",
   "version": "0.1.0",
-  "title": "Score Rating",
+  "title": "Rating Accordion",
   "category": "widgets",
   "icon": "",
-  "description": "A block for displaying a rating.",
+  "description": "Accordion Style Blocks for Score Component",
   "example": {},
   "attributes": {
-    "rating": {
-      "type": "number",
-      "default": 4.5
+    "detail": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "score": {
+      "type": "string"
     }
   },
   "supports": {
     "html": false
   },
-  "textdomain": "sl-blocks",
+  "textdomain": "rating-accordion",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",

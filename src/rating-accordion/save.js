@@ -16,7 +16,7 @@ export default function save({ attributes }) {
 					viewBox="0 0 120 120"
 					aria-label={__(
 						`Overall score ${rating} out of ${maxRating}`,
-						"sl-blocks",
+						"rating",
 					)}
 				>
 					<circle className="track" cx="60" cy="60" r="46" />
@@ -32,7 +32,7 @@ export default function save({ attributes }) {
 
 				<div className="center">
 					<div className="value">{rating}</div>
-					<div className="label">{__("Overall Score", "sl-blocks")}</div>
+					<div className="label">{__("Overall Score", "rating-accordion")}</div>
 				</div>
 			</div>
 		</div>

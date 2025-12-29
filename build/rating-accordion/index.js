@@ -2,20 +2,20 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/sl-blocks/block.json"
-/*!**********************************!*\
-  !*** ./src/sl-blocks/block.json ***!
-  \**********************************/
+/***/ "./src/rating-accordion/block.json"
+/*!*****************************************!*\
+  !*** ./src/rating-accordion/block.json ***!
+  \*****************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/sl-blocks","version":"0.1.0","title":"Score Rating","category":"widgets","icon":"","description":"A block for displaying a rating.","example":{},"attributes":{"rating":{"type":"number","default":4.5}},"supports":{"html":false},"textdomain":"sl-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/rating-accordion","version":"0.1.0","title":"Rating Accordion","category":"widgets","icon":"","description":"Accordion Style Blocks for Score Component","example":{},"attributes":{"detail":{"type":"string"},"summary":{"type":"string"},"score":{"type":"string"}},"supports":{"html":false},"textdomain":"rating-accordion","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ },
 
-/***/ "./src/sl-blocks/edit.js"
-/*!*******************************!*\
-  !*** ./src/sl-blocks/edit.js ***!
-  \*******************************/
+/***/ "./src/rating-accordion/edit.js"
+/*!**************************************!*\
+  !*** ./src/rating-accordion/edit.js ***!
+  \**************************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -28,7 +28,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/sl-blocks/editor.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/rating-accordion/editor.scss");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
 
@@ -46,60 +46,68 @@ function Edit({
   setAttributes
 }) {
   const {
-    showRating,
-    rating
-  } = attributes || {};
-  const maxRating = 5;
-  const radius = 46;
-  const circumference = 2 * Math.PI * radius;
-  const scoreRatio = rating / maxRating;
-  const strokeDashOffset = circumference * (1 - scoreRatio);
+    summary,
+    detail,
+    score
+  } = attributes;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Settings", "sl-blocks"),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Rating Settings", "rating-accordion"),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
-          __next40pxDefaultSize: true,
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Rating", "sl-blocks"),
-          value: rating || 5,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Score", "rating-accordion"),
+          value: parseFloat(score) || 0.1,
           onChange: value => setAttributes({
-            rating: value
+            score: value.toFixed(1)
           }),
-          step: 0.1,
           min: 0.1,
-          max: 5
+          max: 5,
+          step: 0.1
         })
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "score",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
-          className: "ring",
-          viewBox: "0 0 120 120",
-          "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)(`Overall score ${rating} out of ${maxRating}`, "sl-blocks"),
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("circle", {
-            className: "track",
-            cx: "60",
-            cy: "60",
-            r: "46"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("circle", {
-            className: "progress",
-            cx: "60",
-            cy: "60",
-            r: "46",
-            strokeDasharray: circumference,
-            strokeDashoffset: strokeDashOffset
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("details", {
+        className: "wp-block-sl-blocks-rating-accordion",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("summary", {
+          className: "wp-block-sl-blocks-rating-accordion__summary",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+            tagName: "span",
+            value: summary,
+            allowedFormats: ["core/bold"],
+            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Summary text…", "rating-accordion"),
+            onChange: value => setAttributes({
+              summary: value
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+            className: "wp-block-sl-blocks-rating-accordion__score-wrapper",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              className: "wp-block-sl-blocks-rating-accordion__score",
+              children: score || "0.0"
+            }), "/ 5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
+              xmlns: "http://www.w3.org/2000/svg",
+              height: "12px",
+              fill: "none",
+              viewBox: "0 0 24 24",
+              strokeWidth: 1.5,
+              stroke: "currentColor",
+              className: "wp-block-sl-blocks-rating-accordion__chevron",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                d: "m19.5 8.25-7.5 7.5-7.5-7.5"
+              })
+            })]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "value",
-            children: rating
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "label",
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Overall Score", "sl-blocks")
-          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+          tagName: "div",
+          className: "wp-block-sl-blocks-rating-accordion__detail",
+          value: detail,
+          multiline: "p",
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Detail text…", "rating-accordion"),
+          onChange: value => setAttributes({
+            detail: value
+          })
         })]
       })
     })]
@@ -108,10 +116,10 @@ function Edit({
 
 /***/ },
 
-/***/ "./src/sl-blocks/editor.scss"
-/*!***********************************!*\
-  !*** ./src/sl-blocks/editor.scss ***!
-  \***********************************/
+/***/ "./src/rating-accordion/editor.scss"
+/*!******************************************!*\
+  !*** ./src/rating-accordion/editor.scss ***!
+  \******************************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -120,19 +128,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ },
 
-/***/ "./src/sl-blocks/index.js"
-/*!********************************!*\
-  !*** ./src/sl-blocks/index.js ***!
-  \********************************/
+/***/ "./src/rating-accordion/index.js"
+/*!***************************************!*\
+  !*** ./src/rating-accordion/index.js ***!
+  \***************************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/sl-blocks/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/sl-blocks/edit.js");
-/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/sl-blocks/save.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/sl-blocks/block.json");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/rating-accordion/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/rating-accordion/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/rating-accordion/save.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/rating-accordion/block.json");
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -171,10 +179,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ },
 
-/***/ "./src/sl-blocks/save.js"
-/*!*******************************!*\
-  !*** ./src/sl-blocks/save.js ***!
-  \*******************************/
+/***/ "./src/rating-accordion/save.js"
+/*!**************************************!*\
+  !*** ./src/rating-accordion/save.js ***!
+  \**************************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -209,7 +217,7 @@ function save({
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("svg", {
         className: "ring",
         viewBox: "0 0 120 120",
-        "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)(`Overall score ${rating} out of ${maxRating}`, "sl-blocks"),
+        "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)(`Overall score ${rating} out of ${maxRating}`, "rating"),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("circle", {
           className: "track",
           cx: "60",
@@ -230,7 +238,7 @@ function save({
           children: rating
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "label",
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Overall Score", "sl-blocks")
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Overall Score", "rating-accordion")
         })]
       })]
     })
@@ -239,10 +247,10 @@ function save({
 
 /***/ },
 
-/***/ "./src/sl-blocks/style.scss"
-/*!**********************************!*\
-  !*** ./src/sl-blocks/style.scss ***!
-  \**********************************/
+/***/ "./src/rating-accordion/style.scss"
+/*!*****************************************!*\
+  !*** ./src/rating-accordion/style.scss ***!
+  \*****************************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -417,8 +425,8 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"sl-blocks/index": 0,
-/******/ 			"sl-blocks/style-index": 0
+/******/ 			"rating-accordion/index": 0,
+/******/ 			"rating-accordion/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -468,7 +476,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["sl-blocks/style-index"], () => (__webpack_require__("./src/sl-blocks/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["rating-accordion/style-index"], () => (__webpack_require__("./src/rating-accordion/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

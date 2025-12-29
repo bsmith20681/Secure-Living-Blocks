@@ -18,10 +18,10 @@ export default function Edit({ attributes, setAttributes }) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={__("Settings", "sl-blocks")}>
+				<PanelBody title={__("Settings", "rating")}>
 					<RangeControl
 						__next40pxDefaultSize
-						label={__("Rating", "sl-blocks")}
+						label={__("Rating", "rating")}
 						value={rating || 5}
 						onChange={(value) => setAttributes({ rating: value })}
 						step={0.1}
@@ -38,7 +38,7 @@ export default function Edit({ attributes, setAttributes }) {
 						viewBox="0 0 120 120"
 						aria-label={__(
 							`Overall score ${rating} out of ${maxRating}`,
-							"sl-blocks",
+							"rating",
 						)}
 					>
 						<circle className="track" cx="60" cy="60" r="46" />
@@ -54,7 +54,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 					<div className="center">
 						<div className="value">{rating}</div>
-						<div className="label">{__("Overall Score", "sl-blocks")}</div>
+						<div className="label">{__("Overall Score", "rating")}</div>
 					</div>
 				</div>
 			</div>
