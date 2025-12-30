@@ -1,0 +1,71 @@
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/showcase/editor.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Styles applied only in the editor.
+ */
+.wp-block-sl-blocks-showcase {
+  border: 1px dashed #e0e0e0;
+  border-radius: 4px;
+  /* Highlight empty states */
+}
+.wp-block-sl-blocks-showcase .carousel__placeholder {
+  background: #f9f9f9;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #666;
+  border: 2px dashed #ddd;
+  border-radius: 4px;
+}
+.wp-block-sl-blocks-showcase {
+  /* Make RichText placeholders more visible */
+}
+.wp-block-sl-blocks-showcase .rich-text[data-is-placeholder-visible=true] {
+  color: #999;
+}
+.wp-block-sl-blocks-showcase {
+  /* Feature tags editor */
+}
+.wp-block-sl-blocks-showcase .showcase-feature-tags-editor h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #222;
+}
+.wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tags-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tag-item {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+.wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tag-item .components-base-control {
+  flex: 1;
+  margin-bottom: 0;
+}
+.wp-block-sl-blocks-showcase {
+  /* Feature item editor spacing */
+}
+.wp-block-sl-blocks-showcase .feature-item-editor .components-base-control {
+  margin-bottom: 0;
+}
+.wp-block-sl-blocks-showcase {
+  /* Button editor visual feedback */
+}
+.wp-block-sl-blocks-showcase .showcase-buttons-editor .primary-button-wrapper,
+.wp-block-sl-blocks-showcase .showcase-buttons-editor .secondary-button {
+  cursor: text;
+  position: relative;
+}
+.wp-block-sl-blocks-showcase .showcase-buttons-editor .primary-button-wrapper:hover,
+.wp-block-sl-blocks-showcase .showcase-buttons-editor .secondary-button:hover {
+  outline: 2px solid #1626b8;
+  outline-offset: 2px;
+}

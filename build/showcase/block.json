@@ -1,0 +1,86 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "create-block/showcase",
+  "version": "0.1.0",
+  "title": "Product Showcase",
+  "category": "widgets",
+  "icon": "star-filled",
+  "description": "Display product information with rating, carousel, and features",
+  "example": {},
+  "attributes": {
+    "topSectionText": {
+      "type": "string",
+      "default": "Best for Combo Sleepers"
+    },
+    "rating": {
+      "type": "number",
+      "default": 4.8
+    },
+    "carouselImages": {
+      "type": "array",
+      "default": []
+    },
+    "serviceName": {
+      "type": "string",
+      "default": ""
+    },
+    "featureTags": {
+      "type": "array",
+      "default": []
+    },
+    "features": {
+      "type": "array",
+      "default": []
+    },
+    "specialOfferTitle": {
+      "type": "string",
+      "default": ""
+    },
+    "specialOfferDescription": {
+      "type": "string",
+      "default": ""
+    },
+    "specialOfferUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "primaryButtonText": {
+      "type": "string",
+      "default": "View Packages"
+    },
+    "primaryButtonUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "videoButtonText": {
+      "type": "string",
+      "default": "Watch Video Review"
+    },
+    "videoButtonUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "reviewButtonText": {
+      "type": "string",
+      "default": "Read Full Review"
+    },
+    "reviewButtonUrl": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "textdomain": "showcase",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

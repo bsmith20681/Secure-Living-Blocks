@@ -61,5 +61,99 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
+	),
+	'showcase' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'create-block/showcase',
+		'version' => '0.1.0',
+		'title' => 'Product Showcase',
+		'category' => 'widgets',
+		'icon' => 'star-filled',
+		'description' => 'Display product information with rating, carousel, and features',
+		'example' => array(
+			
+		),
+		'attributes' => array(
+			'topSectionText' => array(
+				'type' => 'string',
+				'default' => 'Best for Combo Sleepers'
+			),
+			'rating' => array(
+				'type' => 'number',
+				'default' => 4.8
+			),
+			'carouselImages' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'serviceName' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'featureTags' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'features' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'specialOfferTitle' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'specialOfferDescription' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'specialOfferUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'primaryButtonText' => array(
+				'type' => 'string',
+				'default' => 'View Packages'
+			),
+			'primaryButtonUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'videoButtonText' => array(
+				'type' => 'string',
+				'default' => 'Watch Video Review'
+			),
+			'videoButtonUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'reviewButtonText' => array(
+				'type' => 'string',
+				'default' => 'Read Full Review'
+			),
+			'reviewButtonUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'supports' => array(
+			'html' => false,
+			'align' => array(
+				'wide',
+				'full'
+			)
+		),
+		'textdomain' => 'showcase',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
 	)
 );

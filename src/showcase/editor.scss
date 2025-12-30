@@ -1,0 +1,75 @@
+/**
+ * Styles applied only in the editor.
+ */
+
+.wp-block-sl-blocks-showcase {
+	border: 1px dashed #e0e0e0;
+	border-radius: 4px;
+
+	/* Highlight empty states */
+	.carousel__placeholder {
+		background: #f9f9f9;
+		padding: 3rem 1rem;
+		text-align: center;
+		color: #666;
+		border: 2px dashed #ddd;
+		border-radius: 4px;
+	}
+
+	/* Make RichText placeholders more visible */
+	.rich-text[data-is-placeholder-visible="true"] {
+		color: #999;
+	}
+
+	/* Feature tags editor */
+	.showcase-feature-tags-editor {
+		h4 {
+			font-size: 1rem;
+			font-weight: 600;
+			margin-bottom: 0.75rem;
+			color: #222;
+		}
+
+		.feature-tags-list {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+			margin-bottom: 1rem;
+		}
+
+		.feature-tag-item {
+			display: flex;
+			align-items: flex-end;
+			gap: 0.5rem;
+			padding: 0.5rem;
+			background: #f9f9f9;
+			border-radius: 4px;
+
+			.components-base-control {
+				flex: 1;
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	/* Feature item editor spacing */
+	.feature-item-editor {
+		.components-base-control {
+			margin-bottom: 0;
+		}
+	}
+
+	/* Button editor visual feedback */
+	.showcase-buttons-editor {
+		.primary-button-wrapper,
+		.secondary-button {
+			cursor: text;
+			position: relative;
+
+			&:hover {
+				outline: 2px solid #1626b8;
+				outline-offset: 2px;
+			}
+		}
+	}
+}
