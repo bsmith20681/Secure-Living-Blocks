@@ -26,11 +26,35 @@ $video_button_text = isset($attributes['videoButtonText']) ? $attributes['videoB
 $video_button_url = isset($attributes['videoButtonUrl']) ? $attributes['videoButtonUrl'] : '';
 $review_button_text = isset($attributes['reviewButtonText']) ? $attributes['reviewButtonText'] : 'Read Full Review';
 $review_button_url = isset($attributes['reviewButtonUrl']) ? $attributes['reviewButtonUrl'] : '';
-$tabs = isset($attributes['tabs']) ? $attributes['tabs'] : array(
-	array('title' => 'Overview', 'content' => ''),
-	array('title' => 'Features', 'content' => ''),
-	array('title' => 'Details', 'content' => '')
-);
+
+// Get tab data from inner blocks (showcase-tab children)
+$tabs = array();
+
+// Access inner_blocks from the WP_Block object
+if (!empty($block->inner_blocks)) {
+	foreach ($block->inner_blocks as $inner_block) {
+		if ($inner_block->name === 'create-block/showcase-tab') {
+			$title = isset($inner_block->attributes['title']) ? $inner_block->attributes['title'] : 'Tab';
+			$tabs[] = array(
+				'title' => $title,
+				'content' => $inner_block->render()
+			);
+		}
+	}
+}
+
+// Fallback if no tabs found
+if (empty($tabs)) {
+	$tabs = array(
+		array('title' => 'Overview', 'content' => ''),
+		array('title' => 'Features', 'content' => ''),
+		array('title' => 'Details', 'content' => '')
+	);
+}
+
+// Debug: uncomment to see what's available
+// echo '<pre>'; print_r($block->inner_blocks); echo '</pre>';
+// echo '<pre>Content: ' . htmlspecialchars($content) . '</pre>';
 
 // Calculate star rating
 $full_stars = floor($rating);
@@ -221,7 +245,7 @@ $wrapper_attributes = get_block_wrapper_attributes();
 		<div class="tabs__content">
 			<?php foreach ($tabs as $index => $tab): ?>
 				<div class="tab__panel <?php echo $index === 0 ? 'active' : ''; ?>" data-panel="<?php echo esc_attr($index); ?>">
-					<p><?php echo wp_kses_post($tab['content']); ?></p>
+					<?php echo $tab['content']; ?>
 				</div>
 			<?php endforeach; ?>
 		</div>

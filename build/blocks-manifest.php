@@ -148,23 +148,6 @@ return array(
 			'reviewButtonUrl' => array(
 				'type' => 'string',
 				'default' => ''
-			),
-			'tabs' => array(
-				'type' => 'array',
-				'default' => array(
-					array(
-						'title' => 'Overview',
-						'content' => ''
-					),
-					array(
-						'title' => 'Features',
-						'content' => ''
-					),
-					array(
-						'title' => 'Details',
-						'content' => ''
-					)
-				)
 			)
 		),
 		'supports' => array(
@@ -180,5 +163,31 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
+	),
+	'showcase-tab' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'create-block/showcase-tab',
+		'version' => '0.1.0',
+		'title' => 'Showcase Tab',
+		'category' => 'widgets',
+		'icon' => 'index-card',
+		'description' => 'A single tab for the Product Showcase block',
+		'parent' => array(
+			'create-block/showcase'
+		),
+		'attributes' => array(
+			'title' => array(
+				'type' => 'string',
+				'default' => 'Tab'
+			)
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'textdomain' => 'showcase',
+		'editorScript' => 'file:./index.js',
+		'render' => 'file:./render.php'
 	)
 );

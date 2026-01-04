@@ -76,14 +76,6 @@
 		"reviewButtonUrl": {
 			"type": "string",
 			"default": ""
-		},
-		"tabs": {
-			"type": "array",
-			"default": [
-				{ "title": "Overview", "content": "" },
-				{ "title": "Features", "content": "" },
-				{ "title": "Details", "content": "" }
-			]
 		}
 	},
 	"supports": {

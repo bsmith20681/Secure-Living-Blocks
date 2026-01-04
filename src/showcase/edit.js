@@ -6,7 +6,10 @@ import {
 	InspectorControls,
 	MediaUpload,
 	MediaPlaceholder,
+	InnerBlocks,
 } from "@wordpress/block-editor";
+import { useSelect, useDispatch } from "@wordpress/data";
+import { createBlock } from "@wordpress/blocks";
 import {
 	PanelBody,
 	RangeControl,
@@ -303,7 +306,7 @@ function FeaturesEditor({ features, onChange }) {
 	);
 }
 
-export default function Edit({ attributes, setAttributes }) {
+export default function Edit({ attributes, setAttributes, clientId }) {
 	const {
 		topSectionText,
 		rating,
@@ -324,42 +327,41 @@ export default function Edit({ attributes, setAttributes }) {
 		reviewButtonUrl,
 	} = attributes;
 
-	// Tab state
+	// Tab state - tracks which tab is active in the editor
 	const [activeTab, setActiveTab] = useState(0);
 
-	// Initialize tabs if not set
-	const tabs = attributes.tabs || [
-		{ title: "Overview", content: "" },
-		{ title: "Features", content: "" },
-		{ title: "Details", content: "" }
-	];
+	// Get inner blocks (showcase-tab children) and dispatch
+	const { insertBlock, removeBlock, updateBlockAttributes } = useDispatch("core/block-editor");
+	const innerBlocks = useSelect(
+		(select) => select("core/block-editor").getBlocks(clientId),
+		[clientId]
+	);
 
 	// Tab handlers
 	const addTab = () => {
-		const newTabs = [...tabs, { title: "New Tab", content: "" }];
-		setAttributes({ tabs: newTabs });
-		setActiveTab(newTabs.length - 1);
+		const newBlock = createBlock("create-block/showcase-tab", { title: "New Tab" });
+		insertBlock(newBlock, innerBlocks.length, clientId);
+		setActiveTab(innerBlocks.length);
 	};
 
 	const removeTab = (index) => {
-		if (tabs.length <= 1) return; // Minimum 1 tab
-		const newTabs = tabs.filter((_, i) => i !== index);
-		setAttributes({ tabs: newTabs });
-		if (activeTab >= newTabs.length) {
-			setActiveTab(newTabs.length - 1);
+		if (innerBlocks.length <= 1) return;
+		const blockToRemove = innerBlocks[index];
+		if (blockToRemove) {
+			removeBlock(blockToRemove.clientId);
+			if (activeTab >= innerBlocks.length - 1) {
+				setActiveTab(Math.max(0, innerBlocks.length - 2));
+			} else if (activeTab > index) {
+				setActiveTab(activeTab - 1);
+			}
 		}
 	};
 
 	const updateTabTitle = (index, title) => {
-		const newTabs = [...tabs];
-		newTabs[index].title = title;
-		setAttributes({ tabs: newTabs });
-	};
-
-	const updateTabContent = (index, content) => {
-		const newTabs = [...tabs];
-		newTabs[index].content = content;
-		setAttributes({ tabs: newTabs });
+		const block = innerBlocks[index];
+		if (block) {
+			updateBlockAttributes(block.clientId, { title });
+		}
 	};
 
 	// Carousel handlers
@@ -567,19 +569,19 @@ export default function Edit({ attributes, setAttributes }) {
 				<div className="wp-block-sl-blocks-showcase__tabs">
 					{/* Tab Navigation */}
 					<div className="tabs__navigation">
-						{tabs.map((tab, index) => (
+						{innerBlocks.map((block, index) => (
 							<div
-								key={index}
+								key={block.clientId}
 								className={`tab__button ${activeTab === index ? 'active' : ''}`}
+								onClick={() => setActiveTab(index)}
 							>
 								<RichText
 									tagName="span"
-									value={tab.title}
+									value={block.attributes.title}
 									onChange={(value) => updateTabTitle(index, value)}
 									placeholder={__('Tab Title', 'showcase')}
-									onClick={() => setActiveTab(index)}
 								/>
-								{tabs.length > 1 && (
+								{innerBlocks.length > 1 && (
 									<button
 										className="remove-tab"
 										onClick={(e) => {
@@ -598,21 +600,17 @@ export default function Edit({ attributes, setAttributes }) {
 						</Button>
 					</div>
 
-					{/* Tab Content */}
-					<div className="tabs__content">
-						{tabs.map((tab, index) => (
-							<div
-								key={index}
-								className={`tab__panel ${activeTab === index ? 'active' : ''}`}
-							>
-								<RichText
-									tagName="p"
-									value={tab.content}
-									onChange={(value) => updateTabContent(index, value)}
-									placeholder={__('Enter tab content...', 'showcase')}
-								/>
-							</div>
-						))}
+					{/* Tab Content - renders child showcase-tab blocks */}
+					<div className="tabs__content" data-active-tab={activeTab}>
+						<InnerBlocks
+							allowedBlocks={["create-block/showcase-tab"]}
+							template={[
+								["create-block/showcase-tab", { title: "Overview" }],
+								["create-block/showcase-tab", { title: "Features" }],
+								["create-block/showcase-tab", { title: "Details" }],
+							]}
+							renderAppender={false}
+						/>
 					</div>
 				</div>
 			</div>
