@@ -8,7 +8,7 @@
   \*********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/showcase","version":"0.1.0","title":"Product Showcase","category":"widgets","icon":"star-filled","description":"Display product information with rating, carousel, and features","example":{},"attributes":{"topSectionText":{"type":"string","default":"Best for Combo Sleepers"},"rating":{"type":"number","default":4.8},"carouselImages":{"type":"array","default":[]},"serviceName":{"type":"string","default":""},"featureTags":{"type":"array","default":[]},"features":{"type":"array","default":[]},"specialOfferTitle":{"type":"string","default":""},"specialOfferDescription":{"type":"string","default":""},"specialOfferUrl":{"type":"string","default":""},"primaryButtonText":{"type":"string","default":"View Packages"},"primaryButtonUrl":{"type":"string","default":""},"phoneButtonText":{"type":"string","default":"Call Now"},"phoneNumber":{"type":"string","default":""},"videoButtonText":{"type":"string","default":"Watch Video Review"},"videoButtonUrl":{"type":"string","default":""},"reviewButtonText":{"type":"string","default":"Read Full Review"},"reviewButtonUrl":{"type":"string","default":""}},"supports":{"html":false,"align":["wide","full"]},"textdomain":"showcase","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/showcase","version":"0.1.0","title":"Product Showcase","category":"widgets","icon":"star-filled","description":"Display product information with rating, carousel, and features","example":{},"attributes":{"topSectionText":{"type":"string","default":"Best for Combo Sleepers"},"rating":{"type":"number","default":4.8},"carouselImages":{"type":"array","default":[]},"serviceName":{"type":"string","default":""},"featureTags":{"type":"array","default":[]},"features":{"type":"array","default":[]},"specialOfferTitle":{"type":"string","default":""},"specialOfferDescription":{"type":"string","default":""},"specialOfferUrl":{"type":"string","default":""},"primaryButtonText":{"type":"string","default":"View Packages"},"primaryButtonUrl":{"type":"string","default":""},"phoneButtonText":{"type":"string","default":"Call Now"},"phoneNumber":{"type":"string","default":""},"videoButtonText":{"type":"string","default":"Watch Video Review"},"videoButtonUrl":{"type":"string","default":""},"reviewButtonText":{"type":"string","default":"Read Full Review"},"reviewButtonUrl":{"type":"string","default":""},"tabs":{"type":"array","default":[{"title":"Overview","content":""},{"title":"Features","content":""},{"title":"Details","content":""}]}},"supports":{"html":false,"align":["wide","full"]},"textdomain":"showcase","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ },
 
@@ -321,6 +321,57 @@ function Edit({
     reviewButtonUrl
   } = attributes;
 
+  // Tab state
+  const [activeTab, setActiveTab] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(0);
+
+  // Initialize tabs if not set
+  const tabs = attributes.tabs || [{
+    title: "Overview",
+    content: ""
+  }, {
+    title: "Features",
+    content: ""
+  }, {
+    title: "Details",
+    content: ""
+  }];
+
+  // Tab handlers
+  const addTab = () => {
+    const newTabs = [...tabs, {
+      title: "New Tab",
+      content: ""
+    }];
+    setAttributes({
+      tabs: newTabs
+    });
+    setActiveTab(newTabs.length - 1);
+  };
+  const removeTab = index => {
+    if (tabs.length <= 1) return; // Minimum 1 tab
+    const newTabs = tabs.filter((_, i) => i !== index);
+    setAttributes({
+      tabs: newTabs
+    });
+    if (activeTab >= newTabs.length) {
+      setActiveTab(newTabs.length - 1);
+    }
+  };
+  const updateTabTitle = (index, title) => {
+    const newTabs = [...tabs];
+    newTabs[index].title = title;
+    setAttributes({
+      tabs: newTabs
+    });
+  };
+  const updateTabContent = (index, content) => {
+    const newTabs = [...tabs];
+    newTabs[index].content = content;
+    setAttributes({
+      tabs: newTabs
+    });
+  };
+
   // Carousel handlers
   const handleSelectImages = images => {
     setAttributes({
@@ -503,6 +554,45 @@ function Edit({
               })]
             })]
           })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "wp-block-sl-blocks-showcase__tabs",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          className: "tabs__navigation",
+          children: [tabs.map((tab, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: `tab__button ${activeTab === index ? 'active' : ''}`,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+              tagName: "span",
+              value: tab.title,
+              onChange: value => updateTabTitle(index, value),
+              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Tab Title', 'showcase'),
+              onClick: () => setActiveTab(index)
+            }), tabs.length > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+              className: "remove-tab",
+              onClick: e => {
+                e.stopPropagation();
+                removeTab(index);
+              },
+              "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Remove tab', 'showcase'),
+              children: "\xD7"
+            })]
+          }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+            isPrimary: true,
+            isSmall: true,
+            onClick: addTab,
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('+ Add Tab', 'showcase')
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "tabs__content",
+          children: tabs.map((tab, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            className: `tab__panel ${activeTab === index ? 'active' : ''}`,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+              tagName: "p",
+              value: tab.content,
+              onChange: value => updateTabContent(index, value),
+              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enter tab content...', 'showcase')
+            })
+          }, index))
         })]
       })]
     })]

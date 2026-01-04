@@ -148,6 +148,23 @@ return array(
 			'reviewButtonUrl' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'tabs' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'title' => 'Overview',
+						'content' => ''
+					),
+					array(
+						'title' => 'Features',
+						'content' => ''
+					),
+					array(
+						'title' => 'Details',
+						'content' => ''
+					)
+				)
 			)
 		),
 		'supports' => array(

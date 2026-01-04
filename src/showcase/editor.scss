@@ -90,4 +90,56 @@
 			}
 		}
 	}
+
+	/* Tabs editor */
+	.tabs__navigation {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+
+		.tab__button {
+			position: relative;
+			padding-right: 30px; // Add space for the delete button
+
+			.remove-tab {
+				position: absolute;
+				top: 50%;
+				right: 4px;
+				transform: translateY(-50%);
+				background: #dc3232;
+				color: white;
+				border: none;
+				width: 22px;
+				height: 22px;
+				border-radius: 50%;
+				font-size: 16px;
+				font-weight: bold;
+				line-height: 1;
+				cursor: pointer;
+				display: none;
+				align-items: center;
+				justify-content: center;
+				transition: background 0.2s;
+
+				&:hover {
+					background: #a00;
+				}
+			}
+
+			&:hover .remove-tab {
+				display: flex;
+			}
+		}
+	}
+
+	.tabs__content {
+		.tab__panel {
+			display: none;
+
+			&.active {
+				display: block;
+			}
+		}
+	}
 }

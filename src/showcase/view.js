@@ -92,4 +92,34 @@ document.addEventListener("DOMContentLoaded", () => {
 		// Initialize with first slide
 		showSlide(0);
 	});
+
+	// Tab functionality
+	const tabContainers = document.querySelectorAll(".wp-block-sl-blocks-showcase__tabs");
+
+	tabContainers.forEach((tabContainer) => {
+		const tabButtons = tabContainer.querySelectorAll(".tab__button");
+		const tabPanels = tabContainer.querySelectorAll(".tab__panel");
+
+		if (tabButtons.length === 0 || tabPanels.length === 0) {
+			return;
+		}
+
+		// Function to switch tabs
+		const switchTab = (index) => {
+			// Remove active class from all buttons and panels
+			tabButtons.forEach((btn) => btn.classList.remove("active"));
+			tabPanels.forEach((panel) => panel.classList.remove("active"));
+
+			// Add active class to selected button and panel
+			tabButtons[index].classList.add("active");
+			tabPanels[index].classList.add("active");
+		};
+
+		// Add click event to each tab button
+		tabButtons.forEach((button, index) => {
+			button.addEventListener("click", () => {
+				switchTab(index);
+			});
+		});
+	});
 });

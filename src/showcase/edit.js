@@ -324,6 +324,44 @@ export default function Edit({ attributes, setAttributes }) {
 		reviewButtonUrl,
 	} = attributes;
 
+	// Tab state
+	const [activeTab, setActiveTab] = useState(0);
+
+	// Initialize tabs if not set
+	const tabs = attributes.tabs || [
+		{ title: "Overview", content: "" },
+		{ title: "Features", content: "" },
+		{ title: "Details", content: "" }
+	];
+
+	// Tab handlers
+	const addTab = () => {
+		const newTabs = [...tabs, { title: "New Tab", content: "" }];
+		setAttributes({ tabs: newTabs });
+		setActiveTab(newTabs.length - 1);
+	};
+
+	const removeTab = (index) => {
+		if (tabs.length <= 1) return; // Minimum 1 tab
+		const newTabs = tabs.filter((_, i) => i !== index);
+		setAttributes({ tabs: newTabs });
+		if (activeTab >= newTabs.length) {
+			setActiveTab(newTabs.length - 1);
+		}
+	};
+
+	const updateTabTitle = (index, title) => {
+		const newTabs = [...tabs];
+		newTabs[index].title = title;
+		setAttributes({ tabs: newTabs });
+	};
+
+	const updateTabContent = (index, content) => {
+		const newTabs = [...tabs];
+		newTabs[index].content = content;
+		setAttributes({ tabs: newTabs });
+	};
+
 	// Carousel handlers
 	const handleSelectImages = (images) => {
 		setAttributes({ carouselImages: images });
@@ -522,6 +560,59 @@ export default function Edit({ attributes, setAttributes }) {
 								/>
 							</div>
 						</div>
+					</div>
+				</div>
+
+				{/* Tabs */}
+				<div className="wp-block-sl-blocks-showcase__tabs">
+					{/* Tab Navigation */}
+					<div className="tabs__navigation">
+						{tabs.map((tab, index) => (
+							<div
+								key={index}
+								className={`tab__button ${activeTab === index ? 'active' : ''}`}
+							>
+								<RichText
+									tagName="span"
+									value={tab.title}
+									onChange={(value) => updateTabTitle(index, value)}
+									placeholder={__('Tab Title', 'showcase')}
+									onClick={() => setActiveTab(index)}
+								/>
+								{tabs.length > 1 && (
+									<button
+										className="remove-tab"
+										onClick={(e) => {
+											e.stopPropagation();
+											removeTab(index);
+										}}
+										aria-label={__('Remove tab', 'showcase')}
+									>
+										×
+									</button>
+								)}
+							</div>
+						))}
+						<Button isPrimary isSmall onClick={addTab}>
+							{__('+ Add Tab', 'showcase')}
+						</Button>
+					</div>
+
+					{/* Tab Content */}
+					<div className="tabs__content">
+						{tabs.map((tab, index) => (
+							<div
+								key={index}
+								className={`tab__panel ${activeTab === index ? 'active' : ''}`}
+							>
+								<RichText
+									tagName="p"
+									value={tab.content}
+									onChange={(value) => updateTabContent(index, value)}
+									placeholder={__('Enter tab content...', 'showcase')}
+								/>
+							</div>
+						))}
 					</div>
 				</div>
 			</div>

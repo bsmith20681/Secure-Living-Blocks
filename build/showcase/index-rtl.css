@@ -84,3 +84,48 @@
   outline: 2px solid #1626b8;
   outline-offset: 2px;
 }
+.wp-block-sl-blocks-showcase {
+  /* Tabs editor */
+}
+.wp-block-sl-blocks-showcase .tabs__navigation {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.wp-block-sl-blocks-showcase .tabs__navigation .tab__button {
+  position: relative;
+  padding-left: 30px;
+}
+.wp-block-sl-blocks-showcase .tabs__navigation .tab__button .remove-tab {
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  background: #dc3232;
+  color: white;
+  border: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.wp-block-sl-blocks-showcase .tabs__navigation .tab__button .remove-tab:hover {
+  background: #a00;
+}
+.wp-block-sl-blocks-showcase .tabs__navigation .tab__button:hover .remove-tab {
+  display: flex;
+}
+.wp-block-sl-blocks-showcase .tabs__content .tab__panel {
+  display: none;
+}
+.wp-block-sl-blocks-showcase .tabs__content .tab__panel.active {
+  display: block;
+}
