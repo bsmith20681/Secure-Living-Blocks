@@ -125,6 +125,14 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
+			'phoneButtonText' => array(
+				'type' => 'string',
+				'default' => 'Call Now'
+			),
+			'phoneNumber' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'videoButtonText' => array(
 				'type' => 'string',
 				'default' => 'Watch Video Review'

@@ -53,6 +53,14 @@
       "type": "string",
       "default": ""
     },
+    "phoneButtonText": {
+      "type": "string",
+      "default": "Call Now"
+    },
+    "phoneNumber": {
+      "type": "string",
+      "default": ""
+    },
     "videoButtonText": {
       "type": "string",
       "default": "Watch Video Review"

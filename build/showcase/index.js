@@ -8,7 +8,7 @@
   \*********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/showcase","version":"0.1.0","title":"Product Showcase","category":"widgets","icon":"star-filled","description":"Display product information with rating, carousel, and features","example":{},"attributes":{"topSectionText":{"type":"string","default":"Best for Combo Sleepers"},"rating":{"type":"number","default":4.8},"carouselImages":{"type":"array","default":[]},"serviceName":{"type":"string","default":""},"featureTags":{"type":"array","default":[]},"features":{"type":"array","default":[]},"specialOfferTitle":{"type":"string","default":""},"specialOfferDescription":{"type":"string","default":""},"specialOfferUrl":{"type":"string","default":""},"primaryButtonText":{"type":"string","default":"View Packages"},"primaryButtonUrl":{"type":"string","default":""},"videoButtonText":{"type":"string","default":"Watch Video Review"},"videoButtonUrl":{"type":"string","default":""},"reviewButtonText":{"type":"string","default":"Read Full Review"},"reviewButtonUrl":{"type":"string","default":""}},"supports":{"html":false,"align":["wide","full"]},"textdomain":"showcase","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/showcase","version":"0.1.0","title":"Product Showcase","category":"widgets","icon":"star-filled","description":"Display product information with rating, carousel, and features","example":{},"attributes":{"topSectionText":{"type":"string","default":"Best for Combo Sleepers"},"rating":{"type":"number","default":4.8},"carouselImages":{"type":"array","default":[]},"serviceName":{"type":"string","default":""},"featureTags":{"type":"array","default":[]},"features":{"type":"array","default":[]},"specialOfferTitle":{"type":"string","default":""},"specialOfferDescription":{"type":"string","default":""},"specialOfferUrl":{"type":"string","default":""},"primaryButtonText":{"type":"string","default":"View Packages"},"primaryButtonUrl":{"type":"string","default":""},"phoneButtonText":{"type":"string","default":"Call Now"},"phoneNumber":{"type":"string","default":""},"videoButtonText":{"type":"string","default":"Watch Video Review"},"videoButtonUrl":{"type":"string","default":""},"reviewButtonText":{"type":"string","default":"Read Full Review"},"reviewButtonUrl":{"type":"string","default":""}},"supports":{"html":false,"align":["wide","full"]},"textdomain":"showcase","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ },
 
@@ -39,27 +39,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// Predefined icon set using WordPress Dashicons
-
-const FEATURE_ICONS = {
-  shield: "Shield",
-  "star-filled": "Star",
-  yes: "Checkmark",
-  "admin-home": "Home",
-  cart: "Cart",
-  phone: "Phone",
-  email: "Email",
-  lock: "Lock",
-  cloud: "Cloud",
-  "video-alt3": "Video",
-  heart: "Heart",
-  location: "Location"
-};
-
 /**
  * Star Rating Component
  * Displays star rating based on numeric score (0.1-5.0)
  */
+
 function StarRating({
   rating
 }) {
@@ -248,7 +232,7 @@ function FeatureTagsEditor({
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
           value: tag,
           onChange: value => updateTag(index, value),
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("e.g., Cooling Mattress", "showcase")
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("e.g. 24x7 Monitoring", "showcase")
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
           isDestructive: true,
           isSmall: true,
@@ -266,7 +250,7 @@ function FeatureTagsEditor({
 
 /**
  * Features Editor Component
- * Allows adding/removing features with icon selection
+ * Allows adding/removing features (always uses checkmark icon)
  */
 function FeaturesEditor({
   features,
@@ -274,13 +258,14 @@ function FeaturesEditor({
 }) {
   const addFeature = () => {
     onChange([...features, {
-      icon: "shield",
+      icon: "yes",
       text: ""
     }]);
   };
-  const updateFeature = (index, field, value) => {
+  const updateFeature = (index, value) => {
     const updated = [...features];
-    updated[index][field] = value;
+    updated[index].text = value;
+    updated[index].icon = "yes"; // Always use checkmark
     onChange(updated);
   };
   const removeFeature = index => {
@@ -292,17 +277,12 @@ function FeaturesEditor({
       children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Features", "showcase")
     }), features.map((feature, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "feature-item-editor",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-        value: feature.icon,
-        options: Object.keys(FEATURE_ICONS).map(key => ({
-          label: FEATURE_ICONS[key],
-          value: key
-        })),
-        onChange: value => updateFeature(index, "icon", value)
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+        className: "dashicons dashicons-yes"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
         tagName: "span",
         value: feature.text,
-        onChange: value => updateFeature(index, "text", value),
+        onChange: value => updateFeature(index, value),
         placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Feature text...", "showcase")
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
         isDestructive: true,
@@ -333,6 +313,8 @@ function Edit({
     specialOfferUrl,
     primaryButtonText,
     primaryButtonUrl,
+    phoneButtonText,
+    phoneNumber,
     videoButtonText,
     videoButtonUrl,
     reviewButtonText,
@@ -383,6 +365,14 @@ function Edit({
             primaryButtonUrl: value
           }),
           placeholder: "https://example.com/packages"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Phone Number", "showcase"),
+          value: phoneNumber,
+          onChange: value => setAttributes({
+            phoneNumber: value
+          }),
+          placeholder: "(555) 123-4567",
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Phone number for the Call Now button", "showcase")
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Video Review URL", "showcase"),
           value: videoButtonUrl,
@@ -476,17 +466,22 @@ function Edit({
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
             className: "showcase-buttons-editor",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-              className: "primary-button-wrapper",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-                tagName: "div",
-                className: "primary-button",
-                value: primaryButtonText,
-                onChange: value => setAttributes({
-                  primaryButtonText: value
-                }),
-                placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("View Packages", "showcase")
-              })
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+              tagName: "div",
+              className: "primary-button",
+              value: primaryButtonText,
+              onChange: value => setAttributes({
+                primaryButtonText: value
+              }),
+              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("View Packages", "showcase")
+            }), phoneNumber && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+              tagName: "div",
+              className: "secondary-button",
+              value: phoneButtonText,
+              onChange: value => setAttributes({
+                phoneButtonText: value
+              }),
+              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Call Now", "showcase")
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
               className: "secondary-buttons",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {

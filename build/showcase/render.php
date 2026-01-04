@@ -20,6 +20,8 @@ $special_offer_description = isset($attributes['specialOfferDescription']) ? $at
 $special_offer_url = isset($attributes['specialOfferUrl']) ? $attributes['specialOfferUrl'] : '';
 $primary_button_text = isset($attributes['primaryButtonText']) ? $attributes['primaryButtonText'] : 'View Packages';
 $primary_button_url = isset($attributes['primaryButtonUrl']) ? $attributes['primaryButtonUrl'] : '';
+$phone_button_text = isset($attributes['phoneButtonText']) ? $attributes['phoneButtonText'] : 'Call Now';
+$phone_number = isset($attributes['phoneNumber']) ? $attributes['phoneNumber'] : '';
 $video_button_text = isset($attributes['videoButtonText']) ? $attributes['videoButtonText'] : 'Watch Video Review';
 $video_button_url = isset($attributes['videoButtonUrl']) ? $attributes['videoButtonUrl'] : '';
 $review_button_text = isset($attributes['reviewButtonText']) ? $attributes['reviewButtonText'] : 'Read Full Review';
@@ -172,6 +174,13 @@ $wrapper_attributes = get_block_wrapper_attributes();
 					<div class="primary-button">
 						<?php echo esc_html($primary_button_text); ?>
 					</div>
+				<?php endif; ?>
+
+				<!-- Phone Button -->
+				<?php if ($phone_number): ?>
+					<a href="tel:<?php echo esc_attr($phone_number); ?>" class="secondary-button">
+						<?php echo esc_html($phone_button_text); ?>
+					</a>
 				<?php endif; ?>
 
 				<!-- Secondary Buttons -->

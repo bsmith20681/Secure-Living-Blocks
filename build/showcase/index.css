@@ -34,20 +34,32 @@
 }
 .wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tags-list {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
 .wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tag-item {
-  display: flex;
-  align-items: flex-end;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
   gap: 0.5rem;
   padding: 0.5rem;
   background: #f9f9f9;
   border-radius: 4px;
 }
 .wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tag-item .components-base-control {
-  flex: 1;
+  width: 180px;
+  margin-bottom: 0 !important;
+  display: inline-block;
+}
+.wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tag-item .components-base-control__field {
+  margin-bottom: 0 !important;
+}
+.wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tag-item .components-text-control__input {
+  width: 100%;
+}
+.wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tag-item .components-button {
+  flex-shrink: 0;
   margin-bottom: 0;
 }
 .wp-block-sl-blocks-showcase {
@@ -57,14 +69,17 @@
   margin-bottom: 0;
 }
 .wp-block-sl-blocks-showcase {
-  /* Button editor visual feedback */
+  /* Button editor */
 }
-.wp-block-sl-blocks-showcase .showcase-buttons-editor .primary-button-wrapper,
+.wp-block-sl-blocks-showcase .showcase-buttons-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 .wp-block-sl-blocks-showcase .showcase-buttons-editor .secondary-button {
   cursor: text;
   position: relative;
 }
-.wp-block-sl-blocks-showcase .showcase-buttons-editor .primary-button-wrapper:hover,
 .wp-block-sl-blocks-showcase .showcase-buttons-editor .secondary-button:hover {
   outline: 2px solid #1626b8;
   outline-offset: 2px;

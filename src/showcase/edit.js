@@ -11,26 +11,9 @@ import {
 	PanelBody,
 	RangeControl,
 	Button,
-	SelectControl,
 	TextControl,
 } from "@wordpress/components";
 import "./editor.scss";
-
-// Predefined icon set using WordPress Dashicons
-const FEATURE_ICONS = {
-	shield: "Shield",
-	"star-filled": "Star",
-	yes: "Checkmark",
-	"admin-home": "Home",
-	cart: "Cart",
-	phone: "Phone",
-	email: "Email",
-	lock: "Lock",
-	cloud: "Cloud",
-	"video-alt3": "Video",
-	heart: "Heart",
-	location: "Location",
-};
 
 /**
  * Star Rating Component
@@ -261,7 +244,7 @@ function FeatureTagsEditor({ featureTags, onChange }) {
 						<TextControl
 							value={tag}
 							onChange={(value) => updateTag(index, value)}
-							placeholder={__("e.g., Cooling Mattress", "showcase")}
+							placeholder={__("e.g. 24x7 Monitoring", "showcase")}
 						/>
 						<Button isDestructive isSmall onClick={() => removeTag(index)}>
 							{__("Remove", "showcase")}
@@ -278,16 +261,17 @@ function FeatureTagsEditor({ featureTags, onChange }) {
 
 /**
  * Features Editor Component
- * Allows adding/removing features with icon selection
+ * Allows adding/removing features (always uses checkmark icon)
  */
 function FeaturesEditor({ features, onChange }) {
 	const addFeature = () => {
-		onChange([...features, { icon: "shield", text: "" }]);
+		onChange([...features, { icon: "yes", text: "" }]);
 	};
 
-	const updateFeature = (index, field, value) => {
+	const updateFeature = (index, value) => {
 		const updated = [...features];
-		updated[index][field] = value;
+		updated[index].text = value;
+		updated[index].icon = "yes"; // Always use checkmark
 		onChange(updated);
 	};
 
@@ -300,18 +284,11 @@ function FeaturesEditor({ features, onChange }) {
 			<h4>{__("Features", "showcase")}</h4>
 			{features.map((feature, index) => (
 				<div key={index} className="feature-item-editor">
-					<SelectControl
-						value={feature.icon}
-						options={Object.keys(FEATURE_ICONS).map((key) => ({
-							label: FEATURE_ICONS[key],
-							value: key,
-						}))}
-						onChange={(value) => updateFeature(index, "icon", value)}
-					/>
+					<span className="dashicons dashicons-yes"></span>
 					<RichText
 						tagName="span"
 						value={feature.text}
-						onChange={(value) => updateFeature(index, "text", value)}
+						onChange={(value) => updateFeature(index, value)}
 						placeholder={__("Feature text...", "showcase")}
 					/>
 					<Button isDestructive isSmall onClick={() => removeFeature(index)}>
@@ -339,6 +316,8 @@ export default function Edit({ attributes, setAttributes }) {
 		specialOfferUrl,
 		primaryButtonText,
 		primaryButtonUrl,
+		phoneButtonText,
+		phoneNumber,
 		videoButtonText,
 		videoButtonUrl,
 		reviewButtonText,
@@ -386,6 +365,13 @@ export default function Edit({ attributes, setAttributes }) {
 						value={primaryButtonUrl}
 						onChange={(value) => setAttributes({ primaryButtonUrl: value })}
 						placeholder="https://example.com/packages"
+					/>
+					<TextControl
+						label={__("Phone Number", "showcase")}
+						value={phoneNumber}
+						onChange={(value) => setAttributes({ phoneNumber: value })}
+						placeholder="(555) 123-4567"
+						help={__("Phone number for the Call Now button", "showcase")}
 					/>
 					<TextControl
 						label={__("Video Review URL", "showcase")}
@@ -482,19 +468,33 @@ export default function Edit({ attributes, setAttributes }) {
 						{/* Buttons */}
 						<div className="showcase-buttons-editor">
 							{/* Primary Button */}
-							<div className="primary-button-wrapper">
+
+							<RichText
+								tagName="div"
+								className="primary-button"
+								value={primaryButtonText}
+								onChange={(value) =>
+									setAttributes({
+										primaryButtonText: value,
+									})
+								}
+								placeholder={__("View Packages", "showcase")}
+							/>
+
+							{/* Phone Button */}
+							{phoneNumber && (
 								<RichText
 									tagName="div"
-									className="primary-button"
-									value={primaryButtonText}
+									className="secondary-button"
+									value={phoneButtonText}
 									onChange={(value) =>
 										setAttributes({
-											primaryButtonText: value,
+											phoneButtonText: value,
 										})
 									}
-									placeholder={__("View Packages", "showcase")}
+									placeholder={__("Call Now", "showcase")}
 								/>
-							</div>
+							)}
 
 							{/* Secondary Buttons */}
 							<div className="secondary-buttons">
