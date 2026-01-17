@@ -19,19 +19,19 @@ $strokeDashOffset = $circumference * (1 - $scoreRatio);
 ?>
 
 <div <?php echo get_block_wrapper_attributes(); ?>>
-	<div class="score">
+	<div class="relative max-w-xs aspect-square grid place-items-center">
 		<svg
-			class="ring"
+			class="w-full max-w-xs h-full -rotate-90"
 			viewBox="0 0 120 120"
 			aria-label="Overall score <?= esc_attr($rating); ?> out of <?= esc_attr($maxRating); ?>">
 			<circle
-				class="track"
+				class="fill-none stroke-[#e9eefc] stroke-[18]"
 				cx="60"
 				cy="60"
 				r="46"></circle>
 
 			<circle
-				class="progress"
+				class="fill-none stroke-brand-primary stroke-[18] transition-all duration-500 ease-out"
 				cx="60"
 				cy="60"
 				r="46"
@@ -39,9 +39,9 @@ $strokeDashOffset = $circumference * (1 - $scoreRatio);
 				stroke-dashoffset="<?= esc_attr($strokeDashOffset); ?>"></circle>
 		</svg>
 
-		<div class="center">
-			<div class="value"><?= esc_html($rating); ?></div>
-			<div class="label"><?php esc_html_e('Overall Score', 'rating'); ?></div>
+		<div class="absolute text-center left-0 right-0 mx-auto w-fit">
+			<div class="font-bold text-7xl leading-none text-text-primary"><?= esc_html($rating); ?></div>
+			<div class="font-medium text-lg leading-tight text-text-primary"><?php esc_html_e('Overall Score', 'rating'); ?></div>
 		</div>
 	</div>
 </div>

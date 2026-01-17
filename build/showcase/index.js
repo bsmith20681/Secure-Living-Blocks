@@ -59,13 +59,13 @@ function StarRating({
   const emptyStars = 5 - Math.ceil(rating);
   const starPath = "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z";
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-    className: "showcase-star-rating",
+    className: "flex items-center justify-center gap-1 flex-wrap",
     "aria-label": `${rating} out of 5 stars`,
     children: [[...Array(fullStars)].map((_, i) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("svg", {
       width: "20",
       height: "20",
       viewBox: "0 0 24 24",
-      className: "star star-full",
+      className: "text-brand-accent",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("path", {
         d: starPath,
         fill: "currentColor"
@@ -74,7 +74,7 @@ function StarRating({
       width: "20",
       height: "20",
       viewBox: "0 0 24 24",
-      className: "star star-partial",
+      className: "text-brand-accent",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("defs", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("linearGradient", {
           id: `star-gradient-${rating}`,
@@ -94,10 +94,10 @@ function StarRating({
       width: "20",
       height: "20",
       viewBox: "0 0 24 24",
-      className: "star star-empty",
+      className: "text-border-light",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("path", {
         d: starPath,
-        fill: "#e0e0e0"
+        fill: "currentColor"
       })
     }, `empty-${i}`))]
   });
@@ -141,21 +141,22 @@ function CarouselEditor({
     });
   }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-    className: "showcase-carousel-editor",
+    className: "w-full",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-      className: "carousel__main",
+      className: "relative w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
         src: images[activeIndex]?.url,
-        alt: images[activeIndex]?.alt || ""
+        alt: images[activeIndex]?.alt || "",
+        className: "w-full h-full object-cover"
       }), images.length > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-          className: "carousel__arrow carousel__prev",
+          className: "absolute top-1/2 left-2.5 -translate-y-1/2 bg-black/50 text-white border-none w-10 h-10 rounded-full text-2xl cursor-pointer flex items-center justify-center transition-colors z-[2] hover:bg-black/70 focus:outline-2 focus:outline-brand-primary focus:outline-offset-2 disabled:opacity-30 disabled:cursor-not-allowed",
           onClick: handlePrev,
           disabled: activeIndex === 0,
           "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Previous image", "showcase"),
           children: "\u2039"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-          className: "carousel__arrow carousel__next",
+          className: "absolute top-1/2 right-2.5 -translate-y-1/2 bg-black/50 text-white border-none w-10 h-10 rounded-full text-2xl cursor-pointer flex items-center justify-center transition-colors z-[2] hover:bg-black/70 focus:outline-2 focus:outline-brand-primary focus:outline-offset-2 disabled:opacity-30 disabled:cursor-not-allowed",
           onClick: handleNext,
           disabled: activeIndex === images.length - 1,
           "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Next image", "showcase"),
@@ -163,15 +164,16 @@ function CarouselEditor({
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-      className: "carousel__thumbnails",
+      className: "flex gap-2 overflow-x-auto pb-2",
       children: [images.map((image, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-        className: `carousel__thumbnail ${index === activeIndex ? "active" : ""}`,
+        className: `relative w-20 h-20 flex-shrink-0 rounded overflow-hidden cursor-pointer border-2 transition-colors group ${index === activeIndex ? "border-brand-primary shadow-[0_0_0_1px_#1626b8]" : "border-transparent hover:border-brand-primary"}`,
         onClick: () => setActiveIndex(index),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
           src: image.url,
-          alt: ""
+          alt: "",
+          className: "w-full h-full object-cover"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-          className: "remove-image",
+          className: "absolute top-0.5 right-0.5 bg-red-500/80 text-white border-none w-5 h-5 rounded-full text-base leading-none cursor-pointer hidden group-hover:flex items-center justify-center hover:bg-red-500",
           onClick: e => {
             e.stopPropagation();
             onRemoveImage(index);
@@ -198,7 +200,7 @@ function CarouselEditor({
         render: ({
           open
         }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-          className: "carousel__add-more",
+          className: "w-20 h-20 flex-shrink-0 border-2 border-dashed border-brand-primary bg-surface-light rounded text-brand-primary text-3xl cursor-pointer flex items-center justify-center transition-all hover:bg-surface-lighter hover:border-brand-primary-dark",
           onClick: open,
           "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Add more images", "showcase"),
           children: "+"
@@ -228,13 +230,14 @@ function FeatureTagsEditor({
     onChange(featureTags.filter((_, i) => i !== index));
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-    className: "showcase-feature-tags-editor",
+    className: "mb-4",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+      className: "text-base font-semibold mb-3 text-text-primary",
       children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Feature Tags", "showcase")
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-      className: "feature-tags-list",
+      className: "space-y-2",
       children: featureTags.map((tag, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-        className: "feature-tag-item",
+        className: "flex items-center gap-2",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TextControl, {
           value: tag,
           onChange: value => updateTag(index, value),
@@ -278,18 +281,20 @@ function FeaturesEditor({
     onChange(features.filter((_, i) => i !== index));
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-    className: "showcase-features-editor",
+    className: "mb-4",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+      className: "text-base font-semibold mb-3 text-text-primary",
       children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Features", "showcase")
     }), features.map((feature, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-      className: "feature-item-editor",
+      className: "flex items-center gap-2 mb-3 p-2 bg-gray-50 rounded",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
-        className: "dashicons dashicons-yes"
+        className: "dashicons dashicons-yes text-brand-primary"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
         tagName: "span",
         value: feature.text,
         onChange: value => updateFeature(index, value),
-        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Feature text...", "showcase")
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Feature text...", "showcase"),
+        className: "flex-1"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
         isDestructive: true,
         isSmall: true,
@@ -437,40 +442,42 @@ function Edit({
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-      ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
+      ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
+        className: "border border-brand-primary-dark rounded-lg mb-6"
+      }),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-        className: "wp-block-sl-blocks-showcase__top-section",
+        className: "text-center flex justify-between items-center bg-surface-lighter p-4 rounded-t-lg",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
           tagName: "div",
-          className: "top-text",
+          className: "text-2xl md:text-3xl font-medium text-text-primary",
           value: topSectionText,
           onChange: value => setAttributes({
             topSectionText: value
           }),
           placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Best for Combo Sleepers", "showcase")
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-          className: "rating-display",
+          className: "flex items-center justify-center gap-1 flex-wrap",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
-            className: "score-badge",
+            className: "font-bold py-2 px-4 text-3xl",
             children: rating.toFixed(1)
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(StarRating, {
             rating: rating
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-        className: "wp-block-sl-blocks-showcase__body",
+        className: "grid grid-cols-1 md:grid-cols-2 gap-8 p-4 md:py-8 bg-surface-light",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-          className: "showcase__carousel",
+          className: "w-full",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CarouselEditor, {
             images: carouselImages,
             onSelectImages: handleSelectImages,
             onRemoveImage: handleRemoveImage
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-          className: "showcase__content",
+          className: "flex flex-col gap-6",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
             tagName: "h3",
-            className: "service-name",
+            className: "text-2xl md:text-4xl font-medium text-text-primary m-0",
             value: serviceName,
             onChange: value => setAttributes({
               serviceName: value
@@ -487,14 +494,14 @@ function Edit({
               features: value
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-            className: "special-offers-editor",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+              className: "text-base font-semibold mb-3 text-text-primary",
               children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Special Offer", "showcase")
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-              className: "special-offer-box",
+              className: "bg-white border border-border-light rounded p-5 text-center mb-4",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
                 tagName: "div",
-                className: "special-offer-title",
+                className: "text-xl font-bold text-text-primary mb-2",
                 value: specialOfferTitle,
                 onChange: value => setAttributes({
                   specialOfferTitle: value
@@ -502,7 +509,7 @@ function Edit({
                 placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enter Deal Title", "showcase")
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
                 tagName: "div",
-                className: "special-offer-description",
+                className: "text-sm text-text-secondary leading-relaxed",
                 value: specialOfferDescription,
                 onChange: value => setAttributes({
                   specialOfferDescription: value
@@ -512,10 +519,10 @@ function Edit({
               })]
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-            className: "showcase-buttons-editor",
+            className: "flex flex-col gap-6",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
               tagName: "div",
-              className: "primary-button",
+              className: "bg-brand-primary text-white py-4 px-8 border-none rounded font-semibold text-center block cursor-pointer transition-colors hover:bg-brand-primary-dark",
               value: primaryButtonText,
               onChange: value => setAttributes({
                 primaryButtonText: value
@@ -523,17 +530,17 @@ function Edit({
               placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("View Packages", "showcase")
             }), phoneNumber && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
               tagName: "div",
-              className: "secondary-button",
+              className: "bg-transparent text-brand-primary py-4 px-8 border-2 border-brand-primary rounded font-semibold text-center flex items-center justify-center gap-2 cursor-pointer transition-all",
               value: phoneButtonText,
               onChange: value => setAttributes({
                 phoneButtonText: value
               }),
               placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Call Now", "showcase")
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-              className: "secondary-buttons",
+              className: "grid grid-cols-1 sm:grid-cols-2 gap-3",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
                 tagName: "div",
-                className: "showcase__link",
+                className: "text-sm",
                 value: videoButtonText,
                 onChange: value => setAttributes({
                   videoButtonText: value
@@ -541,7 +548,7 @@ function Edit({
                 placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Watch Video Review", "showcase")
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
                 tagName: "div",
-                className: "showcase__link",
+                className: "text-sm",
                 value: reviewButtonText,
                 onChange: value => setAttributes({
                   reviewButtonText: value
@@ -552,11 +559,11 @@ function Edit({
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-        className: "wp-block-sl-blocks-showcase__tabs",
+        className: "bg-surface-light px-4 pb-8",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-          className: "tabs__navigation",
+          className: "flex gap-2 border-b-2 border-border-light mb-6",
           children: [innerBlocks.map((block, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-            className: `tab__button ${activeTab === index ? 'active' : ''}`,
+            className: `bg-transparent border-none py-4 px-6 text-base font-medium cursor-pointer relative transition-colors ${activeTab === index ? "text-brand-primary after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:right-0 after:h-0.5 after:bg-brand-primary" : "text-text-muted hover:text-brand-primary"}`,
             onClick: () => setActiveTab(index),
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
               tagName: "span",
@@ -564,7 +571,7 @@ function Edit({
               onChange: value => updateTabTitle(index, value),
               placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Tab Title', 'showcase')
             }), innerBlocks.length > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-              className: "remove-tab",
+              className: "ml-2 text-red-500 hover:text-red-700",
               onClick: e => {
                 e.stopPropagation();
                 removeTab(index);
@@ -579,7 +586,6 @@ function Edit({
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('+ Add Tab', 'showcase')
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-          className: "tabs__content",
           "data-active-tab": activeTab,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
             allowedBlocks: ["create-block/showcase-tab"],

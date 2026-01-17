@@ -1,47 +1,8 @@
 /**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
+ * Styles applied both on the front of your site and in the editor.
+ * Most styles have been migrated to Tailwind utilities.
+ * This file is kept for any styles that cannot be expressed as utilities.
  */
-.score {
-	position: relative;
-	max-width: 320px;
-	aspect-ratio: 1;
-	display: grid;
-	place-items: center;
-}
-.ring {
-	width: 100%;
-	max-width: 320px;
-	height: 100%;
-	transform: rotate(-90deg);
-}
-.track {
-	fill: none;
-	stroke: #e9eefc;
-	stroke-width: 18;
-}
-.progress {
-	fill: none;
-	stroke: #1626b8;
-	stroke-width: 18;
-	stroke-linecap: butt;
-	transition: stroke-dashoffset 0.6s ease;
-}
-.center {
-	position: absolute;
-	text-align: center;
-	left: 0;
-	right: 0;
-	margin-inline: auto;
-	width: fit-content;
-}
-.value {
-	font: 700 80px/1 system-ui;
-	color: #222;
-}
-.label {
-	font: 500 18px/1.2 system-ui;
-	color: #222;
-}
+
+/* Import Tailwind utilities for frontend styles */
+@use "../style-tailwind.scss";

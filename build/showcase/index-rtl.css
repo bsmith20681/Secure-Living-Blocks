@@ -2,129 +2,21 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/showcase/editor.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************/
 /**
- * Styles applied only in the editor.
+ * Editor-only styles for the Showcase block.
+ * Most styles have been migrated to Tailwind utilities.
+ * This file contains only styles specific to the Gutenberg editor that cannot be expressed as utilities.
  */
 .wp-block-sl-blocks-showcase {
-  border: 1px dashed #e0e0e0;
-  border-radius: 4px;
-  /* Highlight empty states */
+  /* Tabs editor - show/hide tabs based on active state */
 }
-.wp-block-sl-blocks-showcase .carousel__placeholder {
-  background: #f9f9f9;
-  padding: 3rem 1rem;
-  text-align: center;
-  color: #666;
-  border: 2px dashed #ddd;
-  border-radius: 4px;
-}
-.wp-block-sl-blocks-showcase {
-  /* Make RichText placeholders more visible */
-}
-.wp-block-sl-blocks-showcase .rich-text[data-is-placeholder-visible=true] {
-  color: #999;
-}
-.wp-block-sl-blocks-showcase {
-  /* Feature tags editor */
-}
-.wp-block-sl-blocks-showcase .showcase-feature-tags-editor h4 {
-  font-size: 3rem !important;
-  color: red !important;
-  font-weight: 100 !important;
-  margin-bottom: 0.75rem !important;
-}
-.wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tags-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-.wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tag-item {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  background: #f9f9f9;
-  border-radius: 4px;
-}
-.wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tag-item .components-base-control {
-  width: 180px;
-  margin-bottom: 0 !important;
-  display: inline-block;
-}
-.wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tag-item .components-base-control__field {
-  margin-bottom: 0 !important;
-}
-.wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tag-item .components-text-control__input {
-  width: 100%;
-}
-.wp-block-sl-blocks-showcase .showcase-feature-tags-editor .feature-tag-item .components-button {
-  flex-shrink: 0;
-  margin-bottom: 0;
-}
-.wp-block-sl-blocks-showcase {
-  /* Feature item editor spacing */
-}
-.wp-block-sl-blocks-showcase .feature-item-editor .components-base-control {
-  margin-bottom: 0;
-}
-.wp-block-sl-blocks-showcase {
-  /* Button editor */
-}
-.wp-block-sl-blocks-showcase .showcase-buttons-editor {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-.wp-block-sl-blocks-showcase .showcase-buttons-editor .secondary-button {
-  cursor: text;
-  position: relative;
-}
-.wp-block-sl-blocks-showcase .showcase-buttons-editor .secondary-button:hover {
-  outline: 2px solid #1626b8;
-  outline-offset: 2px;
-}
-.wp-block-sl-blocks-showcase {
-  /* Tabs editor */
-}
-.wp-block-sl-blocks-showcase .tabs__navigation {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-.wp-block-sl-blocks-showcase .tabs__navigation .tab__button {
-  position: relative;
-  padding-left: 30px;
-}
-.wp-block-sl-blocks-showcase .tabs__navigation .tab__button .remove-tab {
-  position: absolute;
-  top: 50%;
-  left: 4px;
-  transform: translateY(-50%);
-  background: #dc3232;
-  color: white;
-  border: none;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 1;
-  cursor: pointer;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-}
-.wp-block-sl-blocks-showcase .tabs__navigation .tab__button .remove-tab:hover {
-  background: #a00;
-}
-.wp-block-sl-blocks-showcase .tabs__navigation .tab__button:hover .remove-tab {
-  display: flex;
+.wp-block-sl-blocks-showcase .tabs__content {
+  /* Hide all showcase-tab blocks by default */
 }
 .wp-block-sl-blocks-showcase .tabs__content [data-type="create-block/showcase-tab"] {
   display: none !important;
+}
+.wp-block-sl-blocks-showcase .tabs__content {
+  /* Show only the active tab based on data-active-tab attribute */
 }
 .wp-block-sl-blocks-showcase .tabs__content[data-active-tab="0"] [data-type="create-block/showcase-tab"]:nth-of-type(1) {
   display: block !important;
@@ -155,4 +47,13 @@
 }
 .wp-block-sl-blocks-showcase .tabs__content[data-active-tab="9"] [data-type="create-block/showcase-tab"]:nth-of-type(10) {
   display: block !important;
+}
+.wp-block-sl-blocks-showcase {
+  /* Tab remove button visibility */
+}
+.wp-block-sl-blocks-showcase .tabs__navigation .remove-tab {
+  display: none;
+}
+.wp-block-sl-blocks-showcase .tabs__navigation > div:hover .remove-tab {
+  display: inline;
 }

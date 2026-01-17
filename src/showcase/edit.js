@@ -33,7 +33,7 @@ function StarRating({ rating }) {
 
 	return (
 		<div
-			className="showcase-star-rating"
+			className="flex items-center justify-center gap-1 flex-wrap"
 			aria-label={`${rating} out of 5 stars`}
 		>
 			{/* Full stars */}
@@ -43,7 +43,7 @@ function StarRating({ rating }) {
 					width="20"
 					height="20"
 					viewBox="0 0 24 24"
-					className="star star-full"
+					className="text-brand-accent"
 				>
 					<path d={starPath} fill="currentColor" />
 				</svg>
@@ -56,7 +56,7 @@ function StarRating({ rating }) {
 					width="20"
 					height="20"
 					viewBox="0 0 24 24"
-					className="star star-partial"
+					className="text-brand-accent"
 				>
 					<defs>
 						<linearGradient id={`star-gradient-${rating}`}>
@@ -78,9 +78,9 @@ function StarRating({ rating }) {
 					width="20"
 					height="20"
 					viewBox="0 0 24 24"
-					className="star star-empty"
+					className="text-border-light"
 				>
-					<path d={starPath} fill="#e0e0e0" />
+					<path d={starPath} fill="currentColor" />
 				</svg>
 			))}
 		</div>
@@ -130,19 +130,20 @@ function CarouselEditor({ images, onSelectImages, onRemoveImage }) {
 	}
 
 	return (
-		<div className="showcase-carousel-editor">
+		<div className="w-full">
 			{/* Main Image Display */}
-			<div className="carousel__main">
+			<div className="relative w-full aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-4">
 				<img
 					src={images[activeIndex]?.url}
 					alt={images[activeIndex]?.alt || ""}
+					className="w-full h-full object-cover"
 				/>
 
 				{/* Navigation Arrows */}
 				{images.length > 1 && (
 					<>
 						<button
-							className="carousel__arrow carousel__prev"
+							className="absolute top-1/2 left-2.5 -translate-y-1/2 bg-black/50 text-white border-none w-10 h-10 rounded-full text-2xl cursor-pointer flex items-center justify-center transition-colors z-[2] hover:bg-black/70 focus:outline-2 focus:outline-brand-primary focus:outline-offset-2 disabled:opacity-30 disabled:cursor-not-allowed"
 							onClick={handlePrev}
 							disabled={activeIndex === 0}
 							aria-label={__("Previous image", "showcase")}
@@ -150,7 +151,7 @@ function CarouselEditor({ images, onSelectImages, onRemoveImage }) {
 							‹
 						</button>
 						<button
-							className="carousel__arrow carousel__next"
+							className="absolute top-1/2 right-2.5 -translate-y-1/2 bg-black/50 text-white border-none w-10 h-10 rounded-full text-2xl cursor-pointer flex items-center justify-center transition-colors z-[2] hover:bg-black/70 focus:outline-2 focus:outline-brand-primary focus:outline-offset-2 disabled:opacity-30 disabled:cursor-not-allowed"
 							onClick={handleNext}
 							disabled={activeIndex === images.length - 1}
 							aria-label={__("Next image", "showcase")}
@@ -162,18 +163,18 @@ function CarouselEditor({ images, onSelectImages, onRemoveImage }) {
 			</div>
 
 			{/* Thumbnail Strip */}
-			<div className="carousel__thumbnails">
+			<div className="flex gap-2 overflow-x-auto pb-2">
 				{images.map((image, index) => (
 					<div
 						key={image.id}
-						className={`carousel__thumbnail ${
-							index === activeIndex ? "active" : ""
+						className={`relative w-20 h-20 flex-shrink-0 rounded overflow-hidden cursor-pointer border-2 transition-colors group ${
+							index === activeIndex ? "border-brand-primary shadow-[0_0_0_1px_#1626b8]" : "border-transparent hover:border-brand-primary"
 						}`}
 						onClick={() => setActiveIndex(index)}
 					>
-						<img src={image.url} alt="" />
+						<img src={image.url} alt="" className="w-full h-full object-cover" />
 						<button
-							className="remove-image"
+							className="absolute top-0.5 right-0.5 bg-red-500/80 text-white border-none w-5 h-5 rounded-full text-base leading-none cursor-pointer hidden group-hover:flex items-center justify-center hover:bg-red-500"
 							onClick={(e) => {
 								e.stopPropagation();
 								onRemoveImage(index);
@@ -205,7 +206,7 @@ function CarouselEditor({ images, onSelectImages, onRemoveImage }) {
 						multiple={true}
 						render={({ open }) => (
 							<button
-								className="carousel__add-more"
+								className="w-20 h-20 flex-shrink-0 border-2 border-dashed border-brand-primary bg-surface-light rounded text-brand-primary text-3xl cursor-pointer flex items-center justify-center transition-all hover:bg-surface-lighter hover:border-brand-primary-dark"
 								onClick={open}
 								aria-label={__("Add more images", "showcase")}
 							>
@@ -239,11 +240,11 @@ function FeatureTagsEditor({ featureTags, onChange }) {
 	};
 
 	return (
-		<div className="showcase-feature-tags-editor">
-			<h4>{__("Feature Tags", "showcase")}</h4>
-			<div className="feature-tags-list">
+		<div className="mb-4">
+			<h4 className="text-base font-semibold mb-3 text-text-primary">{__("Feature Tags", "showcase")}</h4>
+			<div className="space-y-2">
 				{featureTags.map((tag, index) => (
-					<div key={index} className="feature-tag-item">
+					<div key={index} className="flex items-center gap-2">
 						<TextControl
 							value={tag}
 							onChange={(value) => updateTag(index, value)}
@@ -283,16 +284,17 @@ function FeaturesEditor({ features, onChange }) {
 	};
 
 	return (
-		<div className="showcase-features-editor">
-			<h4>{__("Features", "showcase")}</h4>
+		<div className="mb-4">
+			<h4 className="text-base font-semibold mb-3 text-text-primary">{__("Features", "showcase")}</h4>
 			{features.map((feature, index) => (
-				<div key={index} className="feature-item-editor">
-					<span className="dashicons dashicons-yes"></span>
+				<div key={index} className="flex items-center gap-2 mb-3 p-2 bg-gray-50 rounded">
+					<span className="dashicons dashicons-yes text-brand-primary"></span>
 					<RichText
 						tagName="span"
 						value={feature.text}
 						onChange={(value) => updateFeature(index, value)}
 						placeholder={__("Feature text...", "showcase")}
+						className="flex-1"
 					/>
 					<Button isDestructive isSmall onClick={() => removeFeature(index)}>
 						{__("Remove", "showcase")}
@@ -429,26 +431,26 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			</InspectorControls>
 
 			{/* Main Editor View */}
-			<div {...useBlockProps()}>
+			<div {...useBlockProps({ className: "border border-brand-primary-dark rounded-lg mb-6" })}>
 				{/* Top Section */}
-				<div className="wp-block-sl-blocks-showcase__top-section">
+				<div className="text-center flex justify-between items-center bg-surface-lighter p-4 rounded-t-lg">
 					<RichText
 						tagName="div"
-						className="top-text"
+						className="text-2xl md:text-3xl font-medium text-text-primary"
 						value={topSectionText}
 						onChange={(value) => setAttributes({ topSectionText: value })}
 						placeholder={__("Best for Combo Sleepers", "showcase")}
 					/>
-					<div className="rating-display">
-						<span className="score-badge">{rating.toFixed(1)}</span>
+					<div className="flex items-center justify-center gap-1 flex-wrap">
+						<span className="font-bold py-2 px-4 text-3xl">{rating.toFixed(1)}</span>
 						<StarRating rating={rating} />
 					</div>
 				</div>
 
 				{/* Main Body */}
-				<div className="wp-block-sl-blocks-showcase__body">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-4 md:py-8 bg-surface-light">
 					{/* Left: Carousel */}
-					<div className="showcase__carousel">
+					<div className="w-full">
 						<CarouselEditor
 							images={carouselImages}
 							onSelectImages={handleSelectImages}
@@ -457,11 +459,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					</div>
 
 					{/* Right: Content */}
-					<div className="showcase__content">
+					<div className="flex flex-col gap-6">
 						{/* Service Name */}
 						<RichText
 							tagName="h3"
-							className="service-name"
+							className="text-2xl md:text-4xl font-medium text-text-primary m-0"
 							value={serviceName}
 							onChange={(value) => setAttributes({ serviceName: value })}
 							placeholder={__("Service/Product Name", "showcase")}
@@ -480,12 +482,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						/>
 
 						{/* Special Offers */}
-						<div className="special-offers-editor">
-							<h4>{__("Special Offer", "showcase")}</h4>
-							<div className="special-offer-box">
+						<div>
+							<h4 className="text-base font-semibold mb-3 text-text-primary">{__("Special Offer", "showcase")}</h4>
+							<div className="bg-white border border-border-light rounded p-5 text-center mb-4">
 								<RichText
 									tagName="div"
-									className="special-offer-title"
+									className="text-xl font-bold text-text-primary mb-2"
 									value={specialOfferTitle}
 									onChange={(value) =>
 										setAttributes({ specialOfferTitle: value })
@@ -494,7 +496,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 								/>
 								<RichText
 									tagName="div"
-									className="special-offer-description"
+									className="text-sm text-text-secondary leading-relaxed"
 									value={specialOfferDescription}
 									onChange={(value) =>
 										setAttributes({ specialOfferDescription: value })
@@ -506,12 +508,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						</div>
 
 						{/* Buttons */}
-						<div className="showcase-buttons-editor">
+						<div className="flex flex-col gap-6">
 							{/* Primary Button */}
-
 							<RichText
 								tagName="div"
-								className="primary-button"
+								className="bg-brand-primary text-white py-4 px-8 border-none rounded font-semibold text-center block cursor-pointer transition-colors hover:bg-brand-primary-dark"
 								value={primaryButtonText}
 								onChange={(value) =>
 									setAttributes({
@@ -525,7 +526,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							{phoneNumber && (
 								<RichText
 									tagName="div"
-									className="secondary-button"
+									className="bg-transparent text-brand-primary py-4 px-8 border-2 border-brand-primary rounded font-semibold text-center flex items-center justify-center gap-2 cursor-pointer transition-all"
 									value={phoneButtonText}
 									onChange={(value) =>
 										setAttributes({
@@ -537,10 +538,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							)}
 
 							{/* Secondary Buttons */}
-							<div className="secondary-buttons">
+							<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
 								<RichText
 									tagName="div"
-									className="showcase__link"
+									className="text-sm"
 									value={videoButtonText}
 									onChange={(value) =>
 										setAttributes({
@@ -551,7 +552,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 								/>
 								<RichText
 									tagName="div"
-									className="showcase__link"
+									className="text-sm"
 									value={reviewButtonText}
 									onChange={(value) =>
 										setAttributes({
@@ -566,13 +567,17 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				</div>
 
 				{/* Tabs */}
-				<div className="wp-block-sl-blocks-showcase__tabs">
+				<div className="bg-surface-light px-4 pb-8">
 					{/* Tab Navigation */}
-					<div className="tabs__navigation">
+					<div className="flex gap-2 border-b-2 border-border-light mb-6">
 						{innerBlocks.map((block, index) => (
 							<div
 								key={block.clientId}
-								className={`tab__button ${activeTab === index ? 'active' : ''}`}
+								className={`bg-transparent border-none py-4 px-6 text-base font-medium cursor-pointer relative transition-colors ${
+									activeTab === index
+										? "text-brand-primary after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:right-0 after:h-0.5 after:bg-brand-primary"
+										: "text-text-muted hover:text-brand-primary"
+								}`}
 								onClick={() => setActiveTab(index)}
 							>
 								<RichText
@@ -583,7 +588,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 								/>
 								{innerBlocks.length > 1 && (
 									<button
-										className="remove-tab"
+										className="ml-2 text-red-500 hover:text-red-700"
 										onClick={(e) => {
 											e.stopPropagation();
 											removeTab(index);
@@ -601,7 +606,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					</div>
 
 					{/* Tab Content - renders child showcase-tab blocks */}
-					<div className="tabs__content" data-active-tab={activeTab}>
+					<div data-active-tab={activeTab}>
 						<InnerBlocks
 							allowedBlocks={["create-block/showcase-tab"]}
 							template={[

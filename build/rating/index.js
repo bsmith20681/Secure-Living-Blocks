@@ -73,18 +73,18 @@ function Edit({
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "score",
+        className: "relative max-w-xs aspect-square grid place-items-center",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
-          className: "ring",
+          className: "w-full max-w-xs h-full -rotate-90 ring-svg",
           viewBox: "0 0 120 120",
           "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)(`Overall score ${rating} out of ${maxRating}`, "rating"),
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("circle", {
-            className: "track",
+            className: "fill-none stroke-[#e9eefc] stroke-[18]",
             cx: "60",
             cy: "60",
             r: "46"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("circle", {
-            className: "progress",
+            className: "fill-none stroke-brand-primary stroke-[18] transition-all duration-500 ease-out progress-circle",
             cx: "60",
             cy: "60",
             r: "46",
@@ -92,12 +92,12 @@ function Edit({
             strokeDashoffset: strokeDashOffset
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "center",
+          className: "absolute text-center left-0 right-0 mx-auto w-fit",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "value",
+            className: "font-bold text-7xl leading-none text-text-primary",
             children: rating
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "label",
+            className: "font-medium text-lg leading-tight text-text-primary",
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Overall Score", "rating")
           })]
         })]

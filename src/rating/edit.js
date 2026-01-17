@@ -32,18 +32,18 @@ export default function Edit({ attributes, setAttributes }) {
 			</InspectorControls>
 
 			<div {...useBlockProps()}>
-				<div className="score">
+				<div className="relative max-w-xs aspect-square grid place-items-center">
 					<svg
-						className="ring"
+						className="w-full max-w-xs h-full -rotate-90 ring-svg"
 						viewBox="0 0 120 120"
 						aria-label={__(
 							`Overall score ${rating} out of ${maxRating}`,
 							"rating",
 						)}
 					>
-						<circle className="track" cx="60" cy="60" r="46" />
+						<circle className="fill-none stroke-[#e9eefc] stroke-[18]" cx="60" cy="60" r="46" />
 						<circle
-							className="progress"
+							className="fill-none stroke-brand-primary stroke-[18] transition-all duration-500 ease-out progress-circle"
 							cx="60"
 							cy="60"
 							r="46"
@@ -52,9 +52,9 @@ export default function Edit({ attributes, setAttributes }) {
 						/>
 					</svg>
 
-					<div className="center">
-						<div className="value">{rating}</div>
-						<div className="label">{__("Overall Score", "rating")}</div>
+					<div className="absolute text-center left-0 right-0 mx-auto w-fit">
+						<div className="font-bold text-7xl leading-none text-text-primary">{rating}</div>
+						<div className="font-medium text-lg leading-tight text-text-primary">{__("Overall Score", "rating")}</div>
 					</div>
 				</div>
 			</div>

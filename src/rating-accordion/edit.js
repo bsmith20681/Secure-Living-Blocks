@@ -29,17 +29,18 @@ export default function Edit({ attributes, setAttributes }) {
 				</PanelBody>
 			</InspectorControls>
 			<div {...useBlockProps()}>
-				<details className="wp-block-sl-blocks-rating-accordion">
-					<summary className="wp-block-sl-blocks-rating-accordion__summary">
+				<details className="bg-surface-light py-3 px-4 mb-4 cursor-pointer group">
+					<summary className="flex justify-between items-center">
 						<RichText
 							tagName="span"
 							value={summary}
 							allowedFormats={["core/bold"]}
 							placeholder={__("Summary text…", "rating-accordion")}
 							onChange={(value) => setAttributes({ summary: value })}
+							className="[margin-block-start:0px]"
 						/>
-						<span className="wp-block-sl-blocks-rating-accordion__score-wrapper">
-							<span className="wp-block-sl-blocks-rating-accordion__score">{score || "0.0"}</span>/ 5
+						<span className="flex items-center gap-1">
+							<span className="font-bold">{score || "0.0"}</span>/ 5
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								height="12px"
@@ -47,7 +48,7 @@ export default function Edit({ attributes, setAttributes }) {
 								viewBox="0 0 24 24"
 								strokeWidth={1.5}
 								stroke="currentColor"
-								className="wp-block-sl-blocks-rating-accordion__chevron"
+								className="transition-transform duration-300 group-open:rotate-180"
 							>
 								<path
 									strokeLinecap="round"
@@ -60,7 +61,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 					<RichText
 						tagName="div"
-						className="wp-block-sl-blocks-rating-accordion__detail"
+						className="mt-3 text-text-secondary"
 						value={detail}
 						multiline="p"
 						placeholder={__("Detail text…", "rating-accordion")}

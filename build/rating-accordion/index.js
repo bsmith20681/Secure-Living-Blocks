@@ -68,9 +68,9 @@ function Edit({
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("details", {
-        className: "wp-block-sl-blocks-rating-accordion",
+        className: "bg-surface-light py-3 px-4 mb-4 cursor-pointer group",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("summary", {
-          className: "wp-block-sl-blocks-rating-accordion__summary",
+          className: "flex justify-between items-center",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
             tagName: "span",
             value: summary,
@@ -78,11 +78,12 @@ function Edit({
             placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Summary text…", "rating-accordion"),
             onChange: value => setAttributes({
               summary: value
-            })
+            }),
+            className: "[margin-block-start:0px]"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
-            className: "wp-block-sl-blocks-rating-accordion__score-wrapper",
+            className: "flex items-center gap-1",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-              className: "wp-block-sl-blocks-rating-accordion__score",
+              className: "font-bold",
               children: score || "0.0"
             }), "/ 5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
               xmlns: "http://www.w3.org/2000/svg",
@@ -91,7 +92,7 @@ function Edit({
               viewBox: "0 0 24 24",
               strokeWidth: 1.5,
               stroke: "currentColor",
-              className: "wp-block-sl-blocks-rating-accordion__chevron",
+              className: "transition-transform duration-300 group-open:rotate-180",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
                 strokeLinecap: "round",
                 strokeLinejoin: "round",
@@ -101,7 +102,7 @@ function Edit({
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
           tagName: "div",
-          className: "wp-block-sl-blocks-rating-accordion__detail",
+          className: "mt-3 text-text-secondary",
           value: detail,
           multiline: "p",
           placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Detail text…", "rating-accordion"),
