@@ -29,15 +29,15 @@ export default function Edit({ attributes, setAttributes }) {
 				</PanelBody>
 			</InspectorControls>
 			<div {...useBlockProps()}>
-				<details className="bg-surface-light py-3 px-4 mb-4 cursor-pointer group">
-					<summary className="flex justify-between items-center">
+				<details className="bg-surface-light mb-4 cursor-pointer group">
+					<summary className="flex justify-between items-center py-4 px-6">
 						<RichText
 							tagName="span"
 							value={summary}
 							allowedFormats={["core/bold"]}
 							placeholder={__("Summary text…", "rating-accordion")}
 							onChange={(value) => setAttributes({ summary: value })}
-							className="[margin-block-start:0px]"
+							className="[margin-block-start:0px] text-lg"
 						/>
 						<span className="flex items-center gap-1">
 							<span className="font-bold">{score || "0.0"}</span>/ 5
@@ -61,7 +61,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 					<RichText
 						tagName="div"
-						className="mt-3 text-text-secondary"
+						className="mt-3 text-secondary px-6 pb-3"
 						value={detail}
 						multiline="p"
 						placeholder={__("Detail text…", "rating-accordion")}

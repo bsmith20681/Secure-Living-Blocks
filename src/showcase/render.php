@@ -33,7 +33,7 @@ $tabs = array();
 // Access inner_blocks from the WP_Block object
 if (!empty($block->inner_blocks)) {
 	foreach ($block->inner_blocks as $inner_block) {
-		if ($inner_block->name === 'create-block/showcase-tab') {
+		if ($inner_block->name === 'sl-blocks/showcase-tab') {
 			$title = isset($inner_block->attributes['title']) ? $inner_block->attributes['title'] : 'Tab';
 			$tabs[] = array(
 				'title' => $title,
@@ -67,12 +67,12 @@ $wrapper_attributes = get_block_wrapper_attributes(array('class' => 'border bord
 
 <div <?php echo $wrapper_attributes; ?>>
 	<!-- Top Section -->
-	<div class="text-center flex justify-between items-center bg-surface-lighter p-4 rounded-t-lg">
-		<div class="text-xl md:text-2xl font-medium text-text-primary">
+	<div class="text-center flex justify-between items-center bg-surface-lighter p-6 rounded-t-lg">
+		<div class="text-2xl md:text-4xl font-medium text-text-primary">
 			<?php echo wp_kses_post($top_section_text); ?>
 		</div>
 		<div class="flex items-center justify-center gap-1 flex-wrap">
-			<span class="font-bold py-2 px-4 text-2xl"><?php echo esc_html(number_format($rating, 1)); ?></span>
+			<span class="font-bold py-2 px-4 text-2xl md:text-4xl"><?php echo esc_html(number_format($rating, 1)); ?></span>
 			<div class="flex items-center justify-center gap-1 flex-wrap" aria-label="<?php echo esc_attr($rating . ' out of 5 stars'); ?>">
 				<?php
 				// Full stars
@@ -118,14 +118,22 @@ $wrapper_attributes = get_block_wrapper_attributes(array('class' => 'border bord
 						alt="<?php echo esc_attr($carousel_images[0]['alt']); ?>"
 						class="w-full h-full object-cover carousel__current-image" />
 					<?php if (count($carousel_images) > 1): ?>
-						<button class="absolute top-1/2 left-2.5 -translate-y-1/2 bg-black/50 text-white border-none w-10 h-10 rounded-full text-2xl cursor-pointer flex items-center justify-center transition-colors z-[2] hover:bg-black/70 focus:outline-2 focus:outline-brand-primary focus:outline-offset-2 disabled:opacity-30 disabled:cursor-not-allowed carousel__prev" aria-label="Previous image">‹</button>
-						<button class="absolute top-1/2 right-2.5 -translate-y-1/2 bg-black/50 text-white border-none w-10 h-10 rounded-full text-2xl cursor-pointer flex items-center justify-center transition-colors z-[2] hover:bg-black/70 focus:outline-2 focus:outline-brand-primary focus:outline-offset-2 disabled:opacity-30 disabled:cursor-not-allowed carousel__next" aria-label="Next image">›</button>
+						<button class="absolute top-1/2 left-2.5 -translate-y-1/2 bg-black/50 text-white border-none w-16 h-16 rounded-full cursor-pointer flex items-center justify-center transition-colors z-[2] hover:bg-black/70 focus:outline-2 focus:outline-brand-primary focus:outline-offset-2 disabled:opacity-30 disabled:cursor-not-allowed carousel__prev" aria-label="Previous image">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-9">
+								<path fill-rule="evenodd" d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z" clip-rule="evenodd" />
+							</svg>
+						</button>
+						<button class="absolute top-1/2 right-2.5 -translate-y-1/2 bg-black/50 text-white border-none w-16 h-16 rounded-full cursor-pointer flex items-center justify-center transition-colors z-[2] hover:bg-black/70 focus:outline-2 focus:outline-brand-primary focus:outline-offset-2 disabled:opacity-30 disabled:cursor-not-allowed carousel__next" aria-label="Next image">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-9">
+								<path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd" />
+							</svg>
+						</button>
 					<?php endif; ?>
 				</div>
 				<div class="flex gap-2 overflow-x-auto pb-2 carousel__thumbnails">
 					<?php foreach ($carousel_images as $index => $image): ?>
 						<div
-							class="relative w-20 h-20 flex-shrink-0 rounded overflow-hidden cursor-pointer border-2 transition-colors carousel__thumbnail <?php echo $index === 0 ? 'border-brand-primary shadow-[0_0_0_1px_#1626b8] active' : 'border-transparent hover:border-brand-primary'; ?>"
+							class="relative w-28 h-28 border-transparent border-2 hover:border-brand-primary rounded overflow-hidden cursor-pointer transition-colors carousel__thumbnail <?php echo $index === 0 ? 'carousel-active' : ''; ?>"
 							data-index="<?php echo esc_attr($index); ?>">
 							<img src="<?php echo esc_url($image['url']); ?>" alt="" class="w-full h-full object-cover" />
 						</div>
@@ -142,7 +150,7 @@ $wrapper_attributes = get_block_wrapper_attributes(array('class' => 'border bord
 		<div class="flex flex-col gap-6">
 			<!-- Service Name -->
 			<?php if ($service_name): ?>
-				<h3 class="text-2xl md:text-4xl font-medium text-text-primary m-0"><?php echo wp_kses_post($service_name); ?></h3>
+				<h3 class="text-2xl md:text-5xl font-medium text-text-primary m-0"><?php echo wp_kses_post($service_name); ?></h3>
 			<?php endif; ?>
 
 			<!-- Feature Tags -->
@@ -150,7 +158,7 @@ $wrapper_attributes = get_block_wrapper_attributes(array('class' => 'border bord
 				<div class="flex flex-wrap gap-2 -mt-2">
 					<?php foreach ($feature_tags as $tag): ?>
 						<?php if (!empty($tag)): ?>
-							<span class="inline-block py-0.5 px-1.5 bg-white border border-text-primary rounded-full text-base font-semibold text-text-primary whitespace-nowrap"><?php echo esc_html($tag); ?></span>
+							<span class="inline-block py-1 px-3 bg-white border border-text-primary rounded-full text-lg font-semibold text-text-primary whitespace-nowrap"><?php echo esc_html($tag); ?></span>
 						<?php endif; ?>
 					<?php endforeach; ?>
 				</div>
@@ -160,8 +168,8 @@ $wrapper_attributes = get_block_wrapper_attributes(array('class' => 'border bord
 			<?php if (!empty($features)): ?>
 				<div>
 					<?php foreach ($features as $feature): ?>
-						<div class="flex items-center gap-2 mb-2 text-2xl text-black">
-							<span class="dashicons dashicons-<?php echo esc_attr($feature['icon']); ?> text-brand-primary text-xl flex-shrink-0"></span>
+						<div class="flex items-center gap-3 mb-4 text-2xl text-black">
+							<span class="dashicons dashicons-<?php echo esc_attr($feature['icon']); ?> text-brand-primary text-2xl flex-shrink-0"></span>
 							<span class="text-text-secondary"><?php echo wp_kses_post($feature['text']); ?></span>
 						</div>
 					<?php endforeach; ?>
@@ -180,7 +188,7 @@ $wrapper_attributes = get_block_wrapper_attributes(array('class' => 'border bord
 
 				if ($special_offer_url):
 				?>
-					<a href="<?php echo esc_url($special_offer_url); ?>" class="no-underline block hover:shadow-lg focus:outline-2 focus:outline-brand-primary focus:outline-offset-2 rounded">
+					<a href="<?php echo esc_url($special_offer_url); ?>" class="block hover:shadow-lg focus:outline-2 focus:outline-brand-primary focus:outline-offset-2 rounded" style="text-decoration: none;">
 						<?php echo $special_offer_content; ?>
 					</a>
 				<?php else: ?>
@@ -189,10 +197,10 @@ $wrapper_attributes = get_block_wrapper_attributes(array('class' => 'border bord
 			<?php endif; ?>
 
 			<!-- Buttons -->
-			<div class="flex flex-col gap-6">
+			<div class=" flex flex-col gap-6">
 				<!-- Primary Button -->
 				<?php if ($primary_button_url): ?>
-					<a href="<?php echo esc_url($primary_button_url); ?>" class="bg-brand-primary text-white py-4 px-8 border-none rounded font-semibold text-center no-underline block cursor-pointer transition-colors hover:bg-brand-primary-dark">
+					<a href="<?php echo esc_url($primary_button_url); ?>" class="bg-brand-primary !text-white py-4 px-8 border-none rounded font-semibold text-center !no-underline block cursor-pointer transition-colors hover:bg-brand-primary-dark">
 						<?php echo esc_html($primary_button_text); ?>
 					</a>
 				<?php else: ?>
@@ -203,7 +211,7 @@ $wrapper_attributes = get_block_wrapper_attributes(array('class' => 'border bord
 
 				<!-- Phone Button -->
 				<?php if ($phone_number): ?>
-					<a href="tel:<?php echo esc_attr($phone_number); ?>" class="bg-transparent text-brand-primary py-4 px-8 border-2 border-brand-primary rounded font-semibold text-center no-underline flex items-center justify-center gap-2 cursor-pointer transition-all">
+					<a href="tel:<?php echo esc_attr($phone_number); ?>" class="!text-brand-primary hover:text-brand-primary-dark py-4 px-8 border-2 border-brand-primary hover:border-brand-primary-dark border-solid rounded font-semibold text-center !no-underline flex items-center justify-center gap-2 cursor-pointer transition-all">
 						<?php echo esc_html($phone_button_text); ?>
 					</a>
 				<?php endif; ?>
@@ -227,23 +235,25 @@ $wrapper_attributes = get_block_wrapper_attributes(array('class' => 'border bord
 	</div>
 
 	<!-- Tabs -->
-	<div class="bg-surface-light px-4 pb-8">
+	<div class="bg-surface-light pb-8 showcase__tabs rounded-b-lg">
 		<!-- Tab Navigation -->
-		<div class="flex gap-2 border-b-2 border-border-light mb-6 tabs__navigation">
-			<?php foreach ($tabs as $index => $tab): ?>
-				<button class="bg-transparent border-none py-4 px-6 text-base font-medium cursor-pointer relative transition-colors tab__button <?php echo $index === 0 ? 'text-brand-primary active' : 'text-text-muted hover:text-brand-primary'; ?>" data-tab="<?php echo esc_attr($index); ?>">
-					<?php echo wp_kses_post($tab['title']); ?>
-				</button>
-			<?php endforeach; ?>
+		<div class="bg-brand-primary pt-2">
+			<div class="bg-brand-primary flex justify-center gap-2 border-b-2 border-border-light mb-6 tabs__navigation">
+				<?php foreach ($tabs as $index => $tab): ?>
+					<button class="bg-transparent text-white text-3xl border-none rounded-t-lg py-4 px-6 cursor-pointer relative transition-colors tab__button <?php echo $index === 0 ? 'tab-active' : 'hover:text-brand-primary hover:bg-surface-lightgit '; ?>" data-tab="<?php echo esc_attr($index); ?>">
+						<?php echo wp_kses_post($tab['title']); ?>
+					</button>
+				<?php endforeach; ?>
+			</div>
 		</div>
 
+
+
 		<!-- Tab Content -->
-		<div class="tabs__content">
+		<div class="tabs__content px-4">
 			<?php foreach ($tabs as $index => $tab): ?>
 				<div class="tab__panel <?php echo $index === 0 ? 'block' : 'hidden'; ?>" data-panel="<?php echo esc_attr($index); ?>">
-					<div class="text-base leading-relaxed text-text-secondary">
-						<?php echo $tab['content']; ?>
-					</div>
+					<?php echo $tab['content']; ?>
 				</div>
 			<?php endforeach; ?>
 		</div>

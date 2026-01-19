@@ -17,3 +17,13 @@
 	height: 2px;
 	background: #1626b8;
 }
+
+.carousel-active {
+	border: 2px solid #1626b8;
+	border-radius: 0.5rem;
+}
+
+.tab-active {
+	background-color: #f5faff;
+	color: #1626b8;
+}

@@ -8,7 +8,7 @@
   \*************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/showcase-tab","version":"0.1.0","title":"Showcase Tab","category":"widgets","icon":"index-card","description":"A single tab for the Product Showcase block","parent":["create-block/showcase"],"attributes":{"title":{"type":"string","default":"Tab"}},"supports":{"html":false,"reusable":false},"textdomain":"showcase","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"sl-blocks/showcase-tab","version":"0.1.0","title":"Showcase Tab","category":"widgets","icon":"index-card","description":"A single tab for the Product Showcase block","parent":["sl-blocks/showcase"],"attributes":{"title":{"type":"string","default":"Tab"}},"supports":{"html":false,"reusable":false},"textdomain":"showcase","editorScript":"file:./index.js","render":"file:./render.php"}');
 
 /***/ },
 

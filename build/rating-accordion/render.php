@@ -21,9 +21,9 @@ $wrapper_attributes = get_block_wrapper_attributes();
 ?>
 
 <div <?php echo $wrapper_attributes; ?>>
-	<details class="bg-surface-light py-3 px-4 mb-4 cursor-pointer group">
-		<summary class="flex justify-between items-center">
-			<span class="[margin-block-start:0px]"><?php echo wp_kses_post($summary); ?></span>
+	<details class="bg-surface-light mb-4 cursor-pointer group">
+		<summary class="flex justify-between items-center py-5 px-7 text-3xl">
+			<span class="[margin-block-start:0px] "><?php echo wp_kses_post($summary); ?></span>
 			<span class="flex items-center gap-1">
 				<span class="font-bold"><?php echo esc_html($score); ?></span>/ 5
 				<svg
@@ -41,6 +41,6 @@ $wrapper_attributes = get_block_wrapper_attributes();
 				</svg>
 			</span>
 		</summary>
-		<div class="mt-3 font-3xl text-secondary"><?php echo wp_kses_post($detail); ?></div>
+		<div class="mt-3 text-secondary px-6 pb-3"><?php echo wp_kses_post($detail); ?></div>
 	</details>
 </div>

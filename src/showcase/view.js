@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			// Update thumbnail active states
 			thumbnails.forEach((thumb, i) => {
 				if (i === currentIndex) {
-					thumb.classList.add("active");
+					thumb.classList.add("carousel-active");
 				} else {
-					thumb.classList.remove("active");
+					thumb.classList.remove("carousel-active");
 				}
 			});
 
@@ -81,10 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		mainImage.addEventListener("keydown", (e) => {
 			if (e.key === "ArrowLeft" && currentIndex > 0) {
 				showSlide(currentIndex - 1);
-			} else if (
-				e.key === "ArrowRight" &&
-				currentIndex < images.length - 1
-			) {
+			} else if (e.key === "ArrowRight" && currentIndex < images.length - 1) {
 				showSlide(currentIndex + 1);
 			}
 		});
@@ -94,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	// Tab functionality
-	const tabContainers = document.querySelectorAll(".wp-block-sl-blocks-showcase__tabs");
+	const tabContainers = document.querySelectorAll(".showcase__tabs");
 
 	tabContainers.forEach((tabContainer) => {
 		const tabButtons = tabContainer.querySelectorAll(".tab__button");
@@ -106,13 +103,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		// Function to switch tabs
 		const switchTab = (index) => {
-			// Remove active class from all buttons and panels
-			tabButtons.forEach((btn) => btn.classList.remove("active"));
-			tabPanels.forEach((panel) => panel.classList.remove("active"));
+			// Update button active states
+			tabButtons.forEach((btn) => {
+				btn.classList.remove("tab-active", "text-brand-primary");
+				btn.classList.add("text-text-muted");
+			});
+			tabButtons[index].classList.add("tab-active", "text-brand-primary");
+			tabButtons[index].classList.remove("text-text-muted");
 
-			// Add active class to selected button and panel
-			tabButtons[index].classList.add("active");
-			tabPanels[index].classList.add("active");
+			// Show/hide panels using Tailwind classes
+			tabPanels.forEach((panel) => {
+				panel.classList.add("hidden");
+				panel.classList.remove("block");
+			});
+			tabPanels[index].classList.remove("hidden");
+			tabPanels[index].classList.add("block");
 		};
 
 		// Add click event to each tab button

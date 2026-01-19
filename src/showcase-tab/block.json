@@ -1,13 +1,13 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "create-block/showcase-tab",
+	"name": "sl-blocks/showcase-tab",
 	"version": "0.1.0",
 	"title": "Showcase Tab",
 	"category": "widgets",
 	"icon": "index-card",
 	"description": "A single tab for the Product Showcase block",
-	"parent": ["create-block/showcase"],
+	"parent": ["sl-blocks/showcase"],
 	"attributes": {
 		"title": {
 			"type": "string",

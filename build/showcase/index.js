@@ -8,7 +8,7 @@
   \*********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/showcase","version":"0.1.0","title":"Product Showcase","category":"widgets","icon":"star-filled","description":"Display product information with rating, carousel, and features","example":{},"attributes":{"topSectionText":{"type":"string","default":"Best for Combo Sleepers"},"rating":{"type":"number","default":4.8},"carouselImages":{"type":"array","default":[]},"serviceName":{"type":"string","default":""},"featureTags":{"type":"array","default":[]},"features":{"type":"array","default":[]},"specialOfferTitle":{"type":"string","default":""},"specialOfferDescription":{"type":"string","default":""},"specialOfferUrl":{"type":"string","default":""},"primaryButtonText":{"type":"string","default":"View Packages"},"primaryButtonUrl":{"type":"string","default":""},"phoneButtonText":{"type":"string","default":"Call Now"},"phoneNumber":{"type":"string","default":""},"videoButtonText":{"type":"string","default":"Watch Video Review"},"videoButtonUrl":{"type":"string","default":""},"reviewButtonText":{"type":"string","default":"Read Full Review"},"reviewButtonUrl":{"type":"string","default":""}},"supports":{"html":false,"align":["wide","full"]},"textdomain":"showcase","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"sl-blocks/showcase","version":"0.1.0","title":"Product Showcase","category":"widgets","icon":"star-filled","description":"Display product information with rating, carousel, and features","example":{},"attributes":{"topSectionText":{"type":"string","default":"Best for Combo Sleepers"},"rating":{"type":"number","default":4.8},"carouselImages":{"type":"array","default":[]},"serviceName":{"type":"string","default":""},"featureTags":{"type":"array","default":[]},"features":{"type":"array","default":[]},"specialOfferTitle":{"type":"string","default":""},"specialOfferDescription":{"type":"string","default":""},"specialOfferUrl":{"type":"string","default":""},"primaryButtonText":{"type":"string","default":"View Packages"},"primaryButtonUrl":{"type":"string","default":""},"phoneButtonText":{"type":"string","default":"Call Now"},"phoneNumber":{"type":"string","default":""},"videoButtonText":{"type":"string","default":"Watch Video Review"},"videoButtonUrl":{"type":"string","default":""},"reviewButtonText":{"type":"string","default":"Read Full Review"},"reviewButtonUrl":{"type":"string","default":""}},"supports":{"html":false,"align":["wide","full"]},"textdomain":"showcase","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ },
 
@@ -232,7 +232,7 @@ function FeatureTagsEditor({
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     className: "mb-4",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
-      className: "text-base font-semibold mb-3 text-text-primary",
+      className: "text-base font-semibold mb-3 text-primary",
       children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Feature Tags", "showcase")
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
       className: "space-y-2",
@@ -283,7 +283,7 @@ function FeaturesEditor({
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     className: "mb-4",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
-      className: "text-base font-semibold mb-3 text-text-primary",
+      className: "text-base font-semibold mb-3 text-primary",
       children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Features", "showcase")
     }), features.map((feature, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "flex items-center gap-2 mb-3 p-2 bg-gray-50 rounded",
@@ -346,7 +346,7 @@ function Edit({
 
   // Tab handlers
   const addTab = () => {
-    const newBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.createBlock)("create-block/showcase-tab", {
+    const newBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.createBlock)("sl-blocks/showcase-tab", {
       title: "New Tab"
     });
     insertBlock(newBlock, innerBlocks.length, clientId);
@@ -449,7 +449,7 @@ function Edit({
         className: "text-center flex justify-between items-center bg-surface-lighter p-4 rounded-t-lg",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
           tagName: "div",
-          className: "text-2xl md:text-3xl font-medium text-text-primary",
+          className: "text-2xl md:text-3xl font-medium text-primary",
           value: topSectionText,
           onChange: value => setAttributes({
             topSectionText: value
@@ -477,7 +477,7 @@ function Edit({
           className: "flex flex-col gap-6",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
             tagName: "h3",
-            className: "text-2xl md:text-4xl font-medium text-text-primary m-0",
+            className: "text-2xl md:text-4xl font-medium text-primary m-0",
             value: serviceName,
             onChange: value => setAttributes({
               serviceName: value
@@ -495,13 +495,13 @@ function Edit({
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
-              className: "text-base font-semibold mb-3 text-text-primary",
+              className: "text-base font-semibold mb-3 text-primary",
               children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Special Offer", "showcase")
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
               className: "bg-white border border-border-light rounded p-5 text-center mb-4",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
                 tagName: "div",
-                className: "text-xl font-bold text-text-primary mb-2",
+                className: "text-xl font-bold text-primary mb-2",
                 value: specialOfferTitle,
                 onChange: value => setAttributes({
                   specialOfferTitle: value
@@ -509,7 +509,7 @@ function Edit({
                 placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Enter Deal Title", "showcase")
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
                 tagName: "div",
-                className: "text-sm text-text-secondary leading-relaxed",
+                className: "text-sm text-secondary leading-relaxed",
                 value: specialOfferDescription,
                 onChange: value => setAttributes({
                   specialOfferDescription: value
@@ -563,37 +563,37 @@ function Edit({
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "flex gap-2 border-b-2 border-border-light mb-6",
           children: [innerBlocks.map((block, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-            className: `bg-transparent border-none py-4 px-6 text-base font-medium cursor-pointer relative transition-colors ${activeTab === index ? "text-brand-primary after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:right-0 after:h-0.5 after:bg-brand-primary" : "text-text-muted hover:text-brand-primary"}`,
+            className: `bg-transparent border-none py-4 px-6 text-base font-medium cursor-pointer relative transition-colors ${activeTab === index ? "text-brand-primary after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:right-0 after:h-0.5 after:bg-brand-primary" : "text-muted hover:text-brand-primary"}`,
             onClick: () => setActiveTab(index),
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
               tagName: "span",
               value: block.attributes.title,
               onChange: value => updateTabTitle(index, value),
-              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Tab Title', 'showcase')
+              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tab Title", "showcase")
             }), innerBlocks.length > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
               className: "ml-2 text-red-500 hover:text-red-700",
               onClick: e => {
                 e.stopPropagation();
                 removeTab(index);
               },
-              "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Remove tab', 'showcase'),
+              "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Remove tab", "showcase"),
               children: "\xD7"
             })]
           }, block.clientId)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
             isPrimary: true,
             isSmall: true,
             onClick: addTab,
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('+ Add Tab', 'showcase')
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("+ Add Tab", "showcase")
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           "data-active-tab": activeTab,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
-            allowedBlocks: ["create-block/showcase-tab"],
-            template: [["create-block/showcase-tab", {
+            allowedBlocks: ["sl-blocks/showcase-tab"],
+            template: [["sl-blocks/showcase-tab", {
               title: "Overview"
-            }], ["create-block/showcase-tab", {
+            }], ["sl-blocks/showcase-tab", {
               title: "Features"
-            }], ["create-block/showcase-tab", {
+            }], ["sl-blocks/showcase-tab", {
               title: "Details"
             }]],
             renderAppender: false

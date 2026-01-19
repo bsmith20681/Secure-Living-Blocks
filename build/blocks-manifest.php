@@ -4,7 +4,7 @@ return array(
 	'rating' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'create-block/rating',
+		'name' => 'sl-blocks/rating',
 		'version' => '0.1.0',
 		'title' => 'Score Rating',
 		'category' => 'widgets',
@@ -32,7 +32,7 @@ return array(
 	'rating-accordion' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'create-block/rating-accordion',
+		'name' => 'sl-blocks/rating-accordion',
 		'version' => '0.1.0',
 		'title' => 'Rating Accordion',
 		'category' => 'widgets',
@@ -65,7 +65,7 @@ return array(
 	'showcase' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'create-block/showcase',
+		'name' => 'sl-blocks/showcase',
 		'version' => '0.1.0',
 		'title' => 'Product Showcase',
 		'category' => 'widgets',
@@ -167,14 +167,14 @@ return array(
 	'showcase-tab' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'create-block/showcase-tab',
+		'name' => 'sl-blocks/showcase-tab',
 		'version' => '0.1.0',
 		'title' => 'Showcase Tab',
 		'category' => 'widgets',
 		'icon' => 'index-card',
 		'description' => 'A single tab for the Product Showcase block',
 		'parent' => array(
-			'create-block/showcase'
+			'sl-blocks/showcase'
 		),
 		'attributes' => array(
 			'title' => array(

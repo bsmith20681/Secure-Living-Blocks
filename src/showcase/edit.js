@@ -168,11 +168,17 @@ function CarouselEditor({ images, onSelectImages, onRemoveImage }) {
 					<div
 						key={image.id}
 						className={`relative w-20 h-20 flex-shrink-0 rounded overflow-hidden cursor-pointer border-2 transition-colors group ${
-							index === activeIndex ? "border-brand-primary shadow-[0_0_0_1px_#1626b8]" : "border-transparent hover:border-brand-primary"
+							index === activeIndex
+								? "border-brand-primary shadow-[0_0_0_1px_#1626b8]"
+								: "border-transparent hover:border-brand-primary"
 						}`}
 						onClick={() => setActiveIndex(index)}
 					>
-						<img src={image.url} alt="" className="w-full h-full object-cover" />
+						<img
+							src={image.url}
+							alt=""
+							className="w-full h-full object-cover"
+						/>
 						<button
 							className="absolute top-0.5 right-0.5 bg-red-500/80 text-white border-none w-5 h-5 rounded-full text-base leading-none cursor-pointer hidden group-hover:flex items-center justify-center hover:bg-red-500"
 							onClick={(e) => {
@@ -241,7 +247,9 @@ function FeatureTagsEditor({ featureTags, onChange }) {
 
 	return (
 		<div className="mb-4">
-			<h4 className="text-base font-semibold mb-3 text-text-primary">{__("Feature Tags", "showcase")}</h4>
+			<h4 className="text-base font-semibold mb-3 text-primary">
+				{__("Feature Tags", "showcase")}
+			</h4>
 			<div className="space-y-2">
 				{featureTags.map((tag, index) => (
 					<div key={index} className="flex items-center gap-2">
@@ -285,9 +293,14 @@ function FeaturesEditor({ features, onChange }) {
 
 	return (
 		<div className="mb-4">
-			<h4 className="text-base font-semibold mb-3 text-text-primary">{__("Features", "showcase")}</h4>
+			<h4 className="text-base font-semibold mb-3 text-primary">
+				{__("Features", "showcase")}
+			</h4>
 			{features.map((feature, index) => (
-				<div key={index} className="flex items-center gap-2 mb-3 p-2 bg-gray-50 rounded">
+				<div
+					key={index}
+					className="flex items-center gap-2 mb-3 p-2 bg-gray-50 rounded"
+				>
 					<span className="dashicons dashicons-yes text-brand-primary"></span>
 					<RichText
 						tagName="span"
@@ -333,15 +346,18 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const [activeTab, setActiveTab] = useState(0);
 
 	// Get inner blocks (showcase-tab children) and dispatch
-	const { insertBlock, removeBlock, updateBlockAttributes } = useDispatch("core/block-editor");
+	const { insertBlock, removeBlock, updateBlockAttributes } =
+		useDispatch("core/block-editor");
 	const innerBlocks = useSelect(
 		(select) => select("core/block-editor").getBlocks(clientId),
-		[clientId]
+		[clientId],
 	);
 
 	// Tab handlers
 	const addTab = () => {
-		const newBlock = createBlock("create-block/showcase-tab", { title: "New Tab" });
+		const newBlock = createBlock("sl-blocks/showcase-tab", {
+			title: "New Tab",
+		});
 		insertBlock(newBlock, innerBlocks.length, clientId);
 		setActiveTab(innerBlocks.length);
 	};
@@ -431,18 +447,24 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			</InspectorControls>
 
 			{/* Main Editor View */}
-			<div {...useBlockProps({ className: "border border-brand-primary-dark rounded-lg mb-6" })}>
+			<div
+				{...useBlockProps({
+					className: "border border-brand-primary-dark rounded-lg mb-6",
+				})}
+			>
 				{/* Top Section */}
 				<div className="text-center flex justify-between items-center bg-surface-lighter p-4 rounded-t-lg">
 					<RichText
 						tagName="div"
-						className="text-2xl md:text-3xl font-medium text-text-primary"
+						className="text-2xl md:text-3xl font-medium text-primary"
 						value={topSectionText}
 						onChange={(value) => setAttributes({ topSectionText: value })}
 						placeholder={__("Best for Combo Sleepers", "showcase")}
 					/>
 					<div className="flex items-center justify-center gap-1 flex-wrap">
-						<span className="font-bold py-2 px-4 text-3xl">{rating.toFixed(1)}</span>
+						<span className="font-bold py-2 px-4 text-3xl">
+							{rating.toFixed(1)}
+						</span>
 						<StarRating rating={rating} />
 					</div>
 				</div>
@@ -463,7 +485,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						{/* Service Name */}
 						<RichText
 							tagName="h3"
-							className="text-2xl md:text-4xl font-medium text-text-primary m-0"
+							className="text-2xl md:text-4xl font-medium text-primary m-0"
 							value={serviceName}
 							onChange={(value) => setAttributes({ serviceName: value })}
 							placeholder={__("Service/Product Name", "showcase")}
@@ -483,11 +505,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 						{/* Special Offers */}
 						<div>
-							<h4 className="text-base font-semibold mb-3 text-text-primary">{__("Special Offer", "showcase")}</h4>
+							<h4 className="text-base font-semibold mb-3 text-primary">
+								{__("Special Offer", "showcase")}
+							</h4>
 							<div className="bg-white border border-border-light rounded p-5 text-center mb-4">
 								<RichText
 									tagName="div"
-									className="text-xl font-bold text-text-primary mb-2"
+									className="text-xl font-bold text-primary mb-2"
 									value={specialOfferTitle}
 									onChange={(value) =>
 										setAttributes({ specialOfferTitle: value })
@@ -496,7 +520,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 								/>
 								<RichText
 									tagName="div"
-									className="text-sm text-text-secondary leading-relaxed"
+									className="text-sm text-secondary leading-relaxed"
 									value={specialOfferDescription}
 									onChange={(value) =>
 										setAttributes({ specialOfferDescription: value })
@@ -576,7 +600,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 								className={`bg-transparent border-none py-4 px-6 text-base font-medium cursor-pointer relative transition-colors ${
 									activeTab === index
 										? "text-brand-primary after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:right-0 after:h-0.5 after:bg-brand-primary"
-										: "text-text-muted hover:text-brand-primary"
+										: "text-muted hover:text-brand-primary"
 								}`}
 								onClick={() => setActiveTab(index)}
 							>
@@ -584,7 +608,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 									tagName="span"
 									value={block.attributes.title}
 									onChange={(value) => updateTabTitle(index, value)}
-									placeholder={__('Tab Title', 'showcase')}
+									placeholder={__("Tab Title", "showcase")}
 								/>
 								{innerBlocks.length > 1 && (
 									<button
@@ -593,7 +617,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 											e.stopPropagation();
 											removeTab(index);
 										}}
-										aria-label={__('Remove tab', 'showcase')}
+										aria-label={__("Remove tab", "showcase")}
 									>
 										×
 									</button>
@@ -601,18 +625,18 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							</div>
 						))}
 						<Button isPrimary isSmall onClick={addTab}>
-							{__('+ Add Tab', 'showcase')}
+							{__("+ Add Tab", "showcase")}
 						</Button>
 					</div>
 
 					{/* Tab Content - renders child showcase-tab blocks */}
 					<div data-active-tab={activeTab}>
 						<InnerBlocks
-							allowedBlocks={["create-block/showcase-tab"]}
+							allowedBlocks={["sl-blocks/showcase-tab"]}
 							template={[
-								["create-block/showcase-tab", { title: "Overview" }],
-								["create-block/showcase-tab", { title: "Features" }],
-								["create-block/showcase-tab", { title: "Details" }],
+								["sl-blocks/showcase-tab", { title: "Overview" }],
+								["sl-blocks/showcase-tab", { title: "Features" }],
+								["sl-blocks/showcase-tab", { title: "Details" }],
 							]}
 							renderAppender={false}
 						/>
