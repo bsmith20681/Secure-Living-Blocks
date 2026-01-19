@@ -94,10 +94,10 @@ function Edit({
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "absolute text-center left-0 right-0 mx-auto w-fit",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "font-bold text-7xl leading-none text-text-primary",
+            className: "font-bold text-6xl leading-none text-primary",
             children: rating
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "font-medium text-lg leading-tight text-text-primary",
+            className: "font-medium text-xl leading-tight text-primary",
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Overall Score", "rating")
           })]
         })]

@@ -19,9 +19,9 @@ $strokeDashOffset = $circumference * (1 - $scoreRatio);
 ?>
 
 <div <?php echo get_block_wrapper_attributes(); ?>>
-	<div class="relative max-w-xs aspect-square grid place-items-center">
+	<div class="relative max-w-lg aspect-square grid place-items-center">
 		<svg
-			class="w-full max-w-xs h-full -rotate-90"
+			class="w-full max-w-lg h-full -rotate-90 ring-svg"
 			viewBox="0 0 120 120"
 			aria-label="Overall score <?= esc_attr($rating); ?> out of <?= esc_attr($maxRating); ?>">
 			<circle
@@ -40,8 +40,8 @@ $strokeDashOffset = $circumference * (1 - $scoreRatio);
 		</svg>
 
 		<div class="absolute text-center left-0 right-0 mx-auto w-fit">
-			<div class="font-bold text-7xl leading-none text-text-primary"><?= esc_html($rating); ?></div>
-			<div class="font-medium text-lg leading-tight text-text-primary"><?php esc_html_e('Overall Score', 'rating'); ?></div>
+			<div class="font-bold text-8xl leading-none text-primary"><?= esc_html($rating); ?></div>
+			<div class="font-medium text-3xl leading-tight text-primary"><?php esc_html_e('Overall Score', 'rating'); ?></div>
 		</div>
 	</div>
 </div>

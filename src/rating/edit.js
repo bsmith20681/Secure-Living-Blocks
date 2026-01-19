@@ -41,7 +41,12 @@ export default function Edit({ attributes, setAttributes }) {
 							"rating",
 						)}
 					>
-						<circle className="fill-none stroke-[#e9eefc] stroke-[18]" cx="60" cy="60" r="46" />
+						<circle
+							className="fill-none stroke-[#e9eefc] stroke-[18]"
+							cx="60"
+							cy="60"
+							r="46"
+						/>
 						<circle
 							className="fill-none stroke-brand-primary stroke-[18] transition-all duration-500 ease-out progress-circle"
 							cx="60"
@@ -53,8 +58,12 @@ export default function Edit({ attributes, setAttributes }) {
 					</svg>
 
 					<div className="absolute text-center left-0 right-0 mx-auto w-fit">
-						<div className="font-bold text-7xl leading-none text-text-primary">{rating}</div>
-						<div className="font-medium text-lg leading-tight text-text-primary">{__("Overall Score", "rating")}</div>
+						<div className="font-bold text-6xl leading-none text-primary">
+							{rating}
+						</div>
+						<div className="font-medium text-xl leading-tight text-primary">
+							{__("Overall Score", "rating")}
+						</div>
 					</div>
 				</div>
 			</div>
